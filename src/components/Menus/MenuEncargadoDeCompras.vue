@@ -7,14 +7,13 @@
           v-bind="attrs"
           v-on="on"
         >
-          Vendedor
+          Encargado de compras
         </v-btn>
       </template>
       <v-list>
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          @click="ir(item.link)"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
@@ -24,16 +23,18 @@
 </template>
 
 <script>
-import router from "@/router";
 export default {
-    name: 'MenuVendedor',
+    name: 'MenuEncargadoDeCompras',
 
     
 
     data() {
         return {
             items: [
-        { title: 'Generar Venta', link: "/ventas" },
+        { title: 'Gestionar orden de compra' },
+        { title: '...' },
+        { title: '...' },
+        { title: '...' },
       ],
         };
     },
@@ -43,9 +44,7 @@ export default {
     },
 
     methods: {
-        ir(ruta) {
-      router.push({ path: `${ruta}` });
-    }
+        
     },
 };
 </script>
