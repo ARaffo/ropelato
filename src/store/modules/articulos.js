@@ -21,13 +21,18 @@ const actions = {
 
                 const arrayDatos = []
 
+
                 for (let id in response.data)
                 {
+ 
                     arrayDatos.push(response.data[id])
+
                 }
-                console.log(arrayDatos)
+               
+
                 commit("setArticulos",arrayDatos)
                 resolve(response)
+         
             })
             .catch(error => {
                 reject(error.response.data)
@@ -36,7 +41,7 @@ const actions = {
     },
 
     addArticulo({ commit, dispatch },
-        {idArticulo,formaDePResentacion,nombre,stockMinimo,stockRecomendado,stockMAximo,
+        {idArticulo,formaDePResentacion,nombre,cantidadDisponible,
             precio,bajoDemanda, localizacion}){
             return new Promise((resolve,reject) => {
                 axios
@@ -44,9 +49,7 @@ const actions = {
                     idArticulo: idArticulo,
                     nombre: nombre,
                     formaDePResentacion: formaDePResentacion,
-                    stockMinimo: stockMinimo,
-                    stockRecomendado: stockRecomendado,
-                    stockMAximo: stockMAximo,
+                    cantidadDisponible: cantidadDisponible,
                     precio: precio,
                     bajoDemanda: bajoDemanda,
                     localizacion: localizacion
