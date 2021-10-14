@@ -7,7 +7,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Vendedor
+          Cliente
         </v-btn>
       </template>
       <v-list>
@@ -26,16 +26,13 @@
 <script>
 import router from "@/router";
 export default {
-    name: 'MenuVendedor',
-
-    
+    name: 'MenuCliente',
 
     data() {
         return {
             items: [
-        { title: 'Generar Venta', link: "/ventas" },
-        { title: 'Coordinar entrega venta futuro', link: "/entregaVentaFuturo" },
-      ],
+        { title: 'Venta web', link: "/ventaWeb" },
+      ]
         };
     },
 
@@ -43,7 +40,7 @@ export default {
         
     },
 
-    methods: {
+      methods: {
         ir(ruta) {
       router.push({ path: `${ruta}` });
     }

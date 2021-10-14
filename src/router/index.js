@@ -20,7 +20,17 @@ const routes = [
   {
     path: '/ventas',
     name: 'Ventas',
-    component: () => import('../views/Ventas')
+    component: () => import('../views/vendedor/Ventas.vue')
+  },
+  {
+    path: '/entregaVentaFuturo',
+    name: 'Entrega Venta Futuro',
+    component: () => import('../views/vendedor/EntregaVentaFuturo.vue')
+  },
+  {
+    path: '/ventaWeb',
+    name: 'Venta web',
+    component: () => import('../views/cliente/VentaWeb.vue')
   }
   
 ]

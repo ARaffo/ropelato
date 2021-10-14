@@ -18,7 +18,7 @@
         <v-divider></v-divider>
 
         <v-stepper-step step="3">
-          Name of step 3
+          Envio a domicilio
         </v-stepper-step>
       </v-stepper-header>
 
@@ -111,7 +111,7 @@
               <!-- <v-btn @click="pruebarda">
                 pruebarda
               </v-btn> -->
-              <v-btn color="primary" @click="e1 = 2" class="mt-5">
+              <v-btn color="primary" @click="e1 = 2; addArticulosConEnvioDomicilio()" class="mt-5">
                 Continue
               </v-btn>
               <!-- :disabled="articulosSeleccionados.length < 1" -->
@@ -278,7 +278,7 @@
                 Continue
               </v-btn>
               <!-- @click="validarCliente" -->
-              <v-btn text @click="e1 = 1" class="mt-5">
+              <v-btn text @click="e1 = 1 ; envioDomicilioArticulos = []" class="mt-5">
                 Cancel
               </v-btn>
             </v-col>
@@ -338,14 +338,14 @@
                 <v-subheader>Articulos con envio a domicilio</v-subheader>
                 <v-list-item-group color="primary">
                   <v-list-item
-                    v-for="(item, i) in articulosSeleccionados"
+                    v-for="(item, i) in envioDomicilioArticulos"
                     :key="i"
                   > 
                     <v-list-item-content
-                      v-if="item.modoDeRetiroSeleccionado === 'domicilio'"
+                     
                     >
                       <v-list-item-title
-                        v-text="item.nombre"
+                        v-text="item"
                       ></v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
@@ -435,6 +435,9 @@ export default {
       entradaModoRetiro: null,
       entradaCantidad: null,
       modoRetiroArticulo: [],
+      direccionEnvio: null,
+
+      envioDomicilioArticulos: [],
 
       clientesLocal: [],
       cuilRule: [
@@ -659,6 +662,9 @@ export default {
         this.departamento = cliente.departamento;
         this.ciudad = cliente.ciudad;
         this.soloLectura = true;
+
+
+        this.direccionEnvio = this.direccion
       } else {
         Swal.fire({
           title: "Cliente no registrado",
@@ -711,7 +717,7 @@ export default {
         (element) => element.idArticulo == idArticulo
       );
 
-      if (articulo != "undefined") {
+      if (articulo != undefined) {
         // var randomNumFecha = Math.floor(Math.random() * (10 - 1) + 1);
 
         this.modoRetiroArticulo = articulo.localizacion;
@@ -735,7 +741,7 @@ export default {
         (element) => element.nombre == nombreArticulo
       );
 
-      if (articulo != "undefined") {
+      if (articulo != undefined) {
         //var randomNumFecha = Math.floor(Math.random() * (10 - 1) + 1);
 
         this.modoRetiroArticulo = articulo.localizacion;
@@ -827,6 +833,15 @@ export default {
       // this.entradaModoRetiro = null,
       // this.entradaCantidad = null,
       // this.modoRetiroArticulo = []
+    },
+
+    addArticulosConEnvioDomicilio(){
+      
+      this.articulosSeleccionados.forEach(articulo => {
+        if(articulo.modoDeRetiroSeleccionado == 'domicilio'){
+          this.envioDomicilioArticulos.push(articulo.nombre)
+        }
+      });
     },
 
     pruebarda() {

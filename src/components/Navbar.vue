@@ -14,8 +14,11 @@
                     <v-col class="pr-0">
                         <MenuEncargadoDeCompras/>
                     </v-col>
-                    <v-col>
+                    <v-col class="pr-0">
                         <MenuVendedor/>
+                    </v-col>
+                    <v-col>
+                        <MenuCliente/>
                     </v-col>
                 </v-row>               
             </div>
@@ -28,6 +31,7 @@ import MenuVendedor from './menus/MenuVendedor'
 import MenuEncargadoDeCompras from './menus/MenuEncargadoDeCompras'
 import MenuOperarioDeDeposito from './menus/MenuOperarioDeDeposito'
 import MenuEncargadoDeLogistica from './menus/MenuEncargadoDeLogistica'
+import MenuCliente from './menus/MenuCliente.vue'
 export default {
     name: 'Navbar',
 
@@ -35,7 +39,8 @@ export default {
         MenuVendedor,
         MenuEncargadoDeCompras,
         MenuOperarioDeDeposito,
-        MenuEncargadoDeLogistica
+        MenuEncargadoDeLogistica,
+        MenuCliente
          },
 
     //directives: { DirectiveName },
