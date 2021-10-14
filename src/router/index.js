@@ -31,6 +31,11 @@ const routes = [
     path: '/ventaWeb',
     name: 'Venta web',
     component: () => import('../views/cliente/VentaWeb.vue')
+  },
+  {
+    path: '/generarOrdenDecompraPorOrenDePedido',
+    name: 'Generar Orden De compra Por Oren De Pedido',
+    component: () => import('../views/encargadoDeCompras/GenerarOrdenDeCompraPorOrdenDePedido.vue')
   }
   
 ]

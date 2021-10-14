@@ -95,7 +95,7 @@
               </v-row>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn flat color="primary">Generar Factura</v-btn>
+              <v-btn @click="finalizar"  color="primary">Generar Factura</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "RopelatoVentaweb",
 
@@ -184,6 +185,15 @@ export default {
       fecha.setDate(fecha.getDate() + dias);
       return fecha;
     },
+
+    finalizar(){
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Compra realizada con exito',
+        showConfirmButton: true,
+        })
+    }
   },
 };
 </script>
