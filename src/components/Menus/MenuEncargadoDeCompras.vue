@@ -34,7 +34,8 @@ export default {
         return {
             items: [
         { title: 'Generar orden de compra por orden de pedido', link: "/generarOrdenDecompraPorOrenDePedido" },
-        { title: 'Resolver conflictos en la recepción de artículo', link: "/conflictoRecepcionArticulo" }
+        { title: 'Resolver conflictos en la recepción de artículo', link: "/conflictoRecepcionArticulo" },
+        { title: 'Evaluación del proveedor respecto a la resolución de inconsistencia', link: "/evaluacionProveedorInconsitencias" }
       ],
         };
     },

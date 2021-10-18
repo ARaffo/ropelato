@@ -100,8 +100,8 @@
         </v-card-text>
         <v-card-actions class="justify-end">
           <v-btn>Cancelar</v-btn>
-          <v-btn @click="mensajeNota" color="primary">Solicitar nota credito</v-btn>
-          <v-btn @click="mensajeOrden" color="primary">Generar orden de compra</v-btn>
+          <v-btn v-if="radioButton == 'faltante'" @click="mensajeNota" color="primary">Solicitar nota credito</v-btn>
+          <v-btn v-if="radioButton == 'exceso'" @click="mensajeOrden" color="primary">Generar orden de compra</v-btn>
         </v-card-actions>
       </v-card>
     </v-container>

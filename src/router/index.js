@@ -41,6 +41,11 @@ const routes = [
     path: '/conflictoRecepcionArticulo',
     name: 'Resolver conflictos en la recepción de artículo',
     component: () => import('../views/encargadoDeCompras/ConflictoRecepcionArticulo.vue')
+  },
+  {
+    path: '/evaluacionProveedorInconsitencias',
+    name: 'Evaluación del proveedor respecto a la resolución de inconsistencia',
+    component: () => import('../views/encargadoDeCompras/EvaluacionProveedorInconsitencias.vue')
   }
 
   
