@@ -6,7 +6,7 @@
           <v-card>
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">Venta Web</h3>
+                <h3 class="headline mb-0">Datos de la compra</h3>
               </div>
             </v-card-title>
             <v-card-text>
@@ -25,14 +25,14 @@
           <v-card>
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">Datos de la factura</h3>
+                <h3 class="headline mb-0">Datos del cliente</h3>
               </div>
             </v-card-title>
             <v-card-text>
               <v-row>
                 <v-col cols="4">
                   <v-text-field
-                    label="Cliente nombre"
+                    label="Nombre"
                     v-model="clienteNombre"
                     hide-details
                     outlined
@@ -42,7 +42,7 @@
                 </v-col>
                      <v-col cols="4">
                   <v-text-field
-                    label="Cliente apellido"
+                    label="Apellido"
                     v-model="clienteApellido"
                     hide-details
                     outlined
@@ -52,7 +52,7 @@
                 </v-col>
                  <v-col cols="4">
                   <v-text-field
-                    label="Cliente documento"
+                    label="Documento"
                     v-model="clienteDni"
                     hide-details
                     outlined
@@ -64,7 +64,7 @@
               <v-row>
                  <v-col cols="4">
                   <v-text-field
-                    label="Cliente telefono"
+                    label="Telefono"
                     v-model="clienteTelefono"
                     hide-details
                     outlined
@@ -74,7 +74,7 @@
                 </v-col>
                  <v-col cols="4">
                   <v-text-field
-                    label="Cliente correo"
+                    label="Correo"
                     v-model="clienteCorreo"
                     hide-details
                     outlined
@@ -84,18 +84,19 @@
                 </v-col>
                  <v-col cols="4">
                   <v-text-field
+                    
                     label="Direccion envio"
                     hide-details
                     v-model="direccionEnvio"
                     outlined
                     dense
-                    readonly
+                    filled
                   ></v-text-field>
                 </v-col>
               </v-row>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn @click="finalizar"  color="primary">Generar Factura</v-btn>
+              <v-btn @click="finalizar"  color="primary">Confirmar envio</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -111,6 +112,7 @@ export default {
 
   data() {
     return {
+      randomNum: Math.floor(Math.random() * (10 - 1) + 1),
       headers: [
         {
           text: "Nombre",
@@ -118,7 +120,7 @@ export default {
           sortable: false,
           value: "nombre",
         },
-        { text: "Presentacion", value: "presentacion" },
+        { text: "Presentación", value: "presentacion" },
         { text: "Cantidad", value: "cantidad" },
         { text: "Precio", value: "precio" },
         { text: "Modo Retiro", value: "modoRetiro" },
@@ -133,12 +135,8 @@ export default {
           cantidad: "10",
           precio: "$ 201",
           modoRetiro: "Envio a domicilio",
-          fechaEntrega: this.sumarDiasFecha(
-            new Date(),
-            Math.floor(Math.random() * (10 - 1) + 1)
-          )
-            .toISOString()
-            .substr(0, 10),
+          fechaEntrega: new Date().toISOString().substr(0, 10),
+
         },
         {
           nombre: "Bañera",
@@ -146,11 +144,7 @@ export default {
           cantidad: "1",
           precio: "$ 19000",
           modoRetiro: "Envio a domicilio",
-          fechaEntrega: this.sumarDiasFecha(
-            new Date(),
-            Math.floor(Math.random() * (10 - 1) + 1)
-          )
-            .toISOString()
+          fechaEntrega: new Date().toISOString()
             .substr(0, 10),
         },
         {
@@ -159,11 +153,7 @@ export default {
           cantidad: "4",
           precio: "$ 5280",
           modoRetiro: "Envio a domicilio",
-          fechaEntrega: this.sumarDiasFecha(
-            new Date(),
-            Math.floor(Math.random() * (10 - 1) + 1)
-          )
-            .toISOString()
+          fechaEntrega: new Date().toISOString()
             .substr(0, 10),
         },
       ],
@@ -173,7 +163,7 @@ export default {
       clienteDni: " 23457612",
       clienteTelefono: "568734",
       clienteCorreo: "correo@gmail.com",
-      direccionEnvio: null
+      direccionEnvio: null,
 
     };
   },
@@ -184,6 +174,15 @@ export default {
     sumarDiasFecha(fecha, dias) {
       fecha.setDate(fecha.getDate() + dias);
       return fecha;
+    },
+
+    getFecha(){
+      return this.sumarDiasFecha(
+            new Date(),
+            this.randomNum
+          )
+            .toISOString()
+            .substr(0, 10)
     },
 
     finalizar(){

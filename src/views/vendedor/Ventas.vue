@@ -38,7 +38,7 @@
                 >
                 </v-text-field>
               </v-col>
-              <v-col cols="2">
+              <v-col cols="3">
                 <v-autocomplete
                   v-model="entradaNombreArticulo"
                   :items="nombresArticulos"
@@ -65,6 +65,7 @@
                   :items="modoRetiroArticulo"
                   v-model="entradaModoRetiro"
                   hide-details
+                  label="Modo retiro"
                   dense
                   outlined
                   :rules="modoRetiroArticuloRule"
@@ -130,7 +131,7 @@
                   outlined
                   filled
                   v-model="cuil"
-                  label="CUIL"
+                  label="CUIL/CUIT/DNI"
                   required
                   class="mt-3 ml-7 mr-6"
                   v-on:keyup.enter="findCliente(cuil)"
@@ -359,7 +360,7 @@
 
           <v-row>
             <v-col class="text-right">
-              <v-btn color="primary" @click="e1 = 1">
+              <v-btn color="primary" @click="finalizar">
                 Continue
               </v-btn>
 
@@ -386,24 +387,23 @@ export default {
       e1: 1,
       headers: [
         {
-          text: "Id Articulo",
+          text: "Id Artículo",
           align: "start",
           sortable: false,
           value: "idArticulo",
           width: 80,
         },
-        { text: "Nombre", value: "nombre", width: 70 },
-        { text: "Presentacion", value: "formaDePResentacion", width: 50 },
-        { text: "Cantidad", value: "cantidad", width: 110 },
+        { text: "Nombre", value: "nombre", width: 110 },
+        { text: "Cantidad", value: "cantidad", width: 50 },
         { text: "Modo Retiro", value: "modoDeRetiroSeleccionado", width: 110 },
         {
           text: "Cantidad Disponible",
           value: "cantidadDisponible",
           width: 110,
         },
-        { text: "Fecha entrega", value: "fechaEntrega", width: 110 },
-        { text: "Venta Futuro", value: "ventaFuturo", width: 50 },
-        { text: "Eliminar", value: "eliminar", sorteable: false, width: 110 },
+        { text: "Fecha entrega", value: "fechaEntrega", width: 100 },
+        { text: "Venta Futuro", value: "ventaFuturo", width: 70 },
+        { text: "Eliminar", value: "eliminar", sorteable: false, width: 100 },
       ],
 
       ///usuario
@@ -442,7 +442,7 @@ export default {
       clientesLocal: [],
       cuilRule: [
         (v) => !!v || "Debe ingresar un cuil",
-        (v) => /^[0-9]*$/.test(v) || "Solo se pueden ingresar numeros",
+        (v) => /^[0-9]*$/.test(v) || "Solo se pueden ingresar números",
       ],
       nombreRule: [(v) => !!v || "Debe ingresar el nombre"],
       apellidoRule: [(v) => !!v || "Debe ingresar el apellido"],
@@ -465,116 +465,121 @@ export default {
         (v) => !!v || "Debe ingresar el modo de retiro del articulo",
       ],
 
-      // articulosHarcode: [
-      //   {
-      //     idArticulo: "t001",
-      //     formaDePResentacion: "5 cm",
-      //     nombre: "Tornillo",
-      //     cantidadDisponible: 3500,
-      //     precio: "$ 11",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'local',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "t002",
-      //     formaDePResentacion: "8 cm",
-      //     nombre: "Tornillo",
-      //     cantidadDisponible: 3200,
-      //     precio: "$ 13",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'local',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "p001",
-      //     formaDePResentacion: "1 Kg",
-      //     nombre: "Pastina negra",
-      //     cantidadDisponible: 30,
-      //     precio: "$ 201",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'deposito 1',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "b001",
-      //     formaDePResentacion: "",
-      //     nombre: "Buje reduccion rosca",
-      //     cantidadDisponible: 300,
-      //     precio: "$ 51",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'local',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "e001",
-      //     formaDePResentacion: "3/8",
-      //     nombre: "Entrerrosca de bronce",
-      //     cantidadDisponible: 300,
-      //     precio: "$ 106",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'local',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "ba001",
-      //     formaDePResentacion: "3/8",
-      //     nombre: "Bañera",
-      //     cantidadDisponible: 0,
-      //     precio: "$ 19000",
-      //     bajoDemanda: true,
-      //     localizacion: {0:'local',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "pl001",
-      //     formaDePResentacion: "25 gr",
-      //     nombre: "Plavicon sellador",
-      //     cantidadDisponible: 250,
-      //     precio: "$ 18000",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'deposito 2',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "h001",
-      //     formaDePResentacion: "20 mm",
-      //     nombre: "Hierro nervado",
-      //     cantidadDisponible: 450,
-      //     precio: "$ 5280",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'deposito 1',1:'domicilio'},
-      //   },
-      //    {
-      //     idArticulo: "c001",
-      //     formaDePResentacion: "3.50 mm",
-      //     nombre: "Chapa sinusoidal",
-      //     cantidadDisponible: 1500,
-      //     precio: "$ 5548",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'deposito',1:'domicilio'},
-      //   },
-      //     {
-      //     idArticulo: "l001",
-      //     formaDePResentacion: "12 x 18 x 33",
-      //     nombre: "Ladrillo ceramico",
-      //     cantidadDisponible: 3500,
-      //     precio: "$ 59",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'deposito 2',1:'domicilio'},
-      //   },
-      //   {
-      //     idArticulo: "l002",
-      //     formaDePResentacion: "18 x 18 x 33",
-      //     nombre: "Ladrillo ceramico",
-      //     cantidadDisponible: 4500,
-      //     precio: "$ 90",
-      //     bajoDemanda: false,
-      //     localizacion: {0:'deposito 2', 1:'domicilio'},
-      //   },
-      // ],
+      articulosHarcode: [
+        {
+          idArticulo: "t001",
+          nombre: "Tornillo  5 cm",
+          cantidadDisponible: 3500,
+          precio: "$ 11.00",
+          bajoDemanda: false,
+          localizacion: ['Local','Domicilio'],
+        },
+        {
+          idArticulo: "t002",
+          nombre: "Tornillo 8 cm",
+          cantidadDisponible: 3200,
+          precio: "$ 13.00",
+          bajoDemanda: false,
+          localizacion: ['Local','Domicilio'],
+        },
+        {
+          idArticulo: "p001",
+          nombre: "Pastina negra 1 Kg",
+          cantidadDisponible: 30,
+          precio: "$ 201.00",
+          bajoDemanda: false,
+          localizacion: ['Deposito 1','Domicilio'],
+        },
+        {
+          idArticulo: "b001",
+          nombre: "Buje reducción rosca",
+          cantidadDisponible: 300,
+          precio: "$ 51.00",
+          bajoDemanda: false,
+          localizacion: ['Local','Domicilio'],
+        },
+        {
+          idArticulo: "e001",
+          nombre: "Entrerrosca de bronce 3/8",
+          cantidadDisponible: 300,
+          precio: "$ 106.00",
+          bajoDemanda: false,
+          localizacion: ['Local','Domicilio'],
+        },
+        {
+          idArticulo: "ba001",
+          nombre: "Bañera",
+          cantidadDisponible: 0,
+          precio: "$ 19000.00",
+          bajoDemanda: true,
+          localizacion: ['Local','Domicilio'],
+        },
+        {
+          idArticulo: "pl001",
+          nombre: "Plavicon sellador 25 gr",
+          cantidadDisponible: 250,
+          precio: "$ 18000.00",
+          bajoDemanda: false,
+          localizacion: ['Deposito 2','Domicilio'],
+        },
+        {
+          idArticulo: "h001",
+          nombre: "Hierro nervado 20 mm",
+          cantidadDisponible: 450,
+          precio: "$ 5280.00",
+          bajoDemanda: false,
+          localizacion: ['Deposito 1','Domicilio'],
+        },
+         {
+          idArticulo: "c001",
+          nombre: "Chapa sinusoidal 3.50 mm",
+          cantidadDisponible: 1500,
+          precio: "$ 5548.00",
+          bajoDemanda: false,
+          localizacion: ['Deposito','Domicilio'],
+        },
+          {
+          idArticulo: "l001",
+          nombre: "Ladrillo ceramico 12 x 18 x 33",
+          cantidadDisponible: 3500,
+          precio: "$ 59.00",
+          bajoDemanda: false,
+          localizacion: ['Deposito 2','Domicilio'],
+        },
+        {
+          idArticulo: "l002",
+          nombre: "Ladrillo ceramico 18 x 18 x 33",
+          cantidadDisponible: 4500,
+          precio: "$ 90.00",
+          bajoDemanda: false,
+          localizacion: ['Deposito 2','Domicilio'],
+        },
+      ],
+
+      clientes : [
+        {
+        cuil: 2013456788,
+        nombre: "Juan",
+        apellido: "Carlos",
+        documento: 1345678,
+        telefono: "3447 678754",
+        correo: "algo@gmail.com",
+        direccion: "calle false 123",
+        provincia: "30",
+        departamento: "30098",
+        ciudad: '30098040000',
+      }
+      ]
     };
   },
 
   mounted() {},
 
   created() {
-    this.fetchArticulos().then(() => {
-      this.chargueNamesArticulos(this.articulos);
-    });
+    // this.fetchArticulos().then(() => {
+    //   this.chargueNamesArticulos(this.articulos);
+    // });
+    this.chargueNamesArticulos(this.articulosHarcode);
     this.fetchProvincias();
     this.fetchDepartamentos("30");
     this.fetchCiudades("30098");
@@ -587,7 +592,7 @@ export default {
   methods: {
     ...mapActions([
       "addArticulo",
-      "fetchArticulos",
+      //"fetchArticulos",
       "fetchProvincias",
       "fetchDepartamentos",
       "fetchCiudades",
@@ -612,7 +617,6 @@ export default {
 
     validarCliente() {
       if (this.$refs.form.validate()) {
-        console.log("holas");
         this.e1 = 3;
       }
     },
@@ -624,20 +628,20 @@ export default {
       }
     },
 
-    ver() {
-      console.log(this.articulos[0].localizacion);
-      console.log(this.articulos);
-      console.log(
-        "prueba 1",
-        JSON.parse(JSON.stringify(this.articulos[0].localizacion))
-      );
-      console.log("prueba", JSON.stringify(this.articulos[0].localizacion));
-      console.log(typeof this.articulos[0].localizacion);
-      console.log(this.articulos[0].localizacion.lenght);
-      this.articulos[0].localizacion.forEach((element) => {
-        console.log(element);
-      });
-    },
+    // ver() {
+    //   console.log(this.articulos[0].localizacion);
+    //   console.log(this.articulos);
+    //   console.log(
+    //     "prueba 1",
+    //     JSON.parse(JSON.stringify(this.articulos[0].localizacion))
+    //   );
+    //   console.log("prueba", JSON.stringify(this.articulos[0].localizacion));
+    //   console.log(typeof this.articulos[0].localizacion);
+    //   console.log(this.articulos[0].localizacion.lenght);
+    //   this.articulos[0].localizacion.forEach((element) => {
+    //     console.log(element);
+    //   });
+    // },
 
     cargarDepartamentos() {
       this.fetchDepartamentos(this.provincia);
@@ -662,9 +666,9 @@ export default {
         this.departamento = cliente.departamento;
         this.ciudad = cliente.ciudad;
         this.soloLectura = true;
-
-
         this.direccionEnvio = this.direccion
+
+        console.log('ciudad',this.ciudad)
       } else {
         Swal.fire({
           title: "Cliente no registrado",
@@ -713,66 +717,24 @@ export default {
     // },
 
     findArticuloById(idArticulo) {
-      let articulo = this.articulos.find(
+      let articulo = this.articulosHarcode.find(
         (element) => element.idArticulo == idArticulo
       );
 
       if (articulo != undefined) {
-        // var randomNumFecha = Math.floor(Math.random() * (10 - 1) + 1);
-
         this.modoRetiroArticulo = articulo.localizacion;
         this.entradaNombreArticulo = articulo.nombre;
-
-        // articulo["modoDeRetiroSeleccionado"] = null;
-        // articulo["cantidad"] = null;
-        // articulo["agregado"] = true;
-        // articulo["ventaFuturo"] = false;
-
-        // articulo.fechaEntrega = this.sumarDiasFecha(new Date(), randomNumFecha)
-        //   .toISOString()
-        //   .substr(0, 10);
-
-        // this.articulosSeleccionados.push(articulo);
       }
     },
 
     finArticuloByNombre(nombreArticulo) {
-      let articulo = this.articulos.find(
+      let articulo = this.articulosHarcode.find(
         (element) => element.nombre == nombreArticulo
       );
 
       if (articulo != undefined) {
-        //var randomNumFecha = Math.floor(Math.random() * (10 - 1) + 1);
-
         this.modoRetiroArticulo = articulo.localizacion;
         this.entradaIdArticulos = articulo.idArticulo;
-
-        //console.log("random fecha", randomNumFecha);
-
-        // articulo["modoDeRetiroSeleccionado"] = null;
-        // articulo["cantidad"] = null;
-        // articulo["agregado"] = true;
-        // articulo["ventaFuturo"] = false;
-
-        // articulo.fechaEntrega = this.sumarDiasFecha(new Date(), randomNumFecha)
-        //   .toISOString()
-        //   .substr(0, 10);
-
-        // this.articulosSeleccionados.pop();
-        // this.articulosSeleccionados.push(articulo);
-
-        // this.articulosSeleccionados.push({
-        //   idArticulo: null,
-        //   formaDePResentacion: null,
-        //   nombre: null,
-        //   cantidadDisponible: null,
-        //   precio: null,
-        //   bajoDemanda: false,
-        //   modoDeRetiroSeleccionado: null,
-        //   localizacion: [],
-        //   agregado: false,
-        //   ventaFuturo: false,
-        // });
       }
     },
 
@@ -801,7 +763,7 @@ export default {
 
         let randomNumFecha = Math.floor(Math.random() * (10 - 1) + 1);
 
-        let articulo = this.articulos.find(
+        let articulo = this.articulosHarcode.find(
           (element) => element.idArticulo == this.entradaIdArticulos
         );
 
@@ -828,11 +790,6 @@ export default {
       this.articulosSeleccionados.push(articulo);
 
       this.$refs.formArticulos.reset();
-      // this.entradaIdArticulos = null,
-      // this.entradaNombreArticulo = null,
-      // this.entradaModoRetiro = null,
-      // this.entradaCantidad = null,
-      // this.modoRetiroArticulo = []
     },
 
     addArticulosConEnvioDomicilio(){
@@ -848,14 +805,23 @@ export default {
       this.articulosSeleccionados.pop();
       console.log("ahora", this.articulosSeleccionados);
     },
+
+     finalizar(){
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Venta finalizada',
+        showConfirmButton: true,
+        })
+    }
   },
   computed: {
     ...mapGetters({
-      articulos: "getArticulos",
+      //articulos: "getArticulos",
       provincias: "getProvincias",
       departamentos: "getDepartamentos",
       ciudades: "getCiudades",
-      clientes: "getClientes",
+      //clientes: "getClientes",
     }),
   },
 };

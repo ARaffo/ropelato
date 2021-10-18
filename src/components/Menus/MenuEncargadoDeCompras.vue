@@ -33,7 +33,8 @@ export default {
     data() {
         return {
             items: [
-        { title: 'Generar Orden De compra Por Oren De Pedido', link: "/generarOrdenDecompraPorOrenDePedido" },
+        { title: 'Generar orden de compra por orden de pedido', link: "/generarOrdenDecompraPorOrenDePedido" },
+        { title: 'Resolver conflictos en la recepción de artículo', link: "/conflictoRecepcionArticulo" }
       ],
         };
     },

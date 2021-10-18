@@ -4,7 +4,7 @@
             <v-card>
                 <v-card-title primary-title>
                     <div>
-                        <h3 class="headline mb-0">Ordenes pedido</h3>
+                        <h3 class="headline mb-0">Órdenes de Pedido</h3>
                     </div>
                 </v-card-title>
                 <v-card-text>
@@ -33,7 +33,7 @@ export default {
          
           headers: [
           {
-            text: 'Articulo',
+            text: 'Artículo',
             align: 'start',
             sortable: false,
             value: 'articulo',
@@ -42,7 +42,7 @@ export default {
           { text: 'Cantidad', value: 'cantidad' },
           { text: 'Precio', value: 'precio' },
           { text: 'Proveedor', value: 'proveedor' },
-          { text: 'Fecha creacion', value: 'fechaCreacion' },
+          { text: 'Fecha creación', value: 'fechaCreacion' },
         ],
 
         ordenesPedido: [
@@ -50,7 +50,7 @@ export default {
             articulo: 'Ladrillo ceramico',
             presentacion: '12 x 18 x 33',
             cantidad: '4000',
-            precio: '40',
+            precio: '$ 40.00',
             proveedor: 'Proveedor 1',
             fechaCreacion: this.restarDiasFecha(
             new Date(),
@@ -61,9 +61,9 @@ export default {
             },
             {
             articulo: 'Tornillo',
-            presentacion: '5 cm"',
+            presentacion: '5 cm',
             cantidad: '9000',
-            precio: '7',
+            precio: '$ 7.00',
             proveedor: 'Proveedor 2',
             fechaCreacion: this.restarDiasFecha(
             new Date(),
@@ -76,7 +76,7 @@ export default {
             articulo: 'Entrerrosca de bronce',
             presentacion: '3/8',
             cantidad: '1000',
-            precio: '80',
+            precio: '$ 80.00',
             proveedor: 'Proveedor 1',
             fechaCreacion: this.restarDiasFecha(
             new Date(),

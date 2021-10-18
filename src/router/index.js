@@ -36,7 +36,14 @@ const routes = [
     path: '/generarOrdenDecompraPorOrenDePedido',
     name: 'Generar Orden De compra Por Oren De Pedido',
     component: () => import('../views/encargadoDeCompras/GenerarOrdenDeCompraPorOrdenDePedido.vue')
+  },
+  {
+    path: '/conflictoRecepcionArticulo',
+    name: 'Resolver conflictos en la recepción de artículo',
+    component: () => import('../views/encargadoDeCompras/ConflictoRecepcionArticulo.vue')
   }
+
+  
   
 ]
 
