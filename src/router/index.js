@@ -46,7 +46,20 @@ const routes = [
     path: '/evaluacionProveedorInconsitencias',
     name: 'Evaluación del proveedor respecto a la resolución de inconsistencia',
     component: () => import('../views/encargadoDeCompras/EvaluacionProveedorInconsitencias.vue')
+  },
+  {
+    path: '/generarOrdenDeCompraPorStockReducido',
+    name: 'Generar Orden de Compra por Orden de Pedido',
+    component: () => import('../views/encargadoDeCompras/GenerarOrdenDeCompraPorStockReducido.vue')
+  },
+  {
+    path: '/entregaArticuloClienteEnDeposito',
+    name: 'Entrega de artículo al cliente en depósito',
+    component: () => import('../views/operarioDeDeposito/EntregaArticuloClienteEnDeposito')
   }
+
+
+
 
   
   
