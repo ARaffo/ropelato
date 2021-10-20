@@ -3,7 +3,7 @@
     <!-- <v-btn color="warning" @click="agregarArticulo">Save articulo</v-btn> -->
     <!-- <v-btn @click="ver"> articulos lo</v-btn> -->
 
-    <v-stepper v-model="e1" height="595">
+    <v-stepper v-model="e1" height="670">
       <v-stepper-header>
         <v-stepper-step :complete="e1 > 1" step="1">
           Articulos
@@ -102,6 +102,14 @@
             <template v-slot:[`item.ventaFuturo`]="{ item }">
               <v-checkbox v-model="item.ventaFuturo"></v-checkbox>
             </template>
+
+            <template
+              v-slot:footer
+            >
+              <div class="ml-3">
+               Total: ${{total}}.00
+              </div>
+            </template>
           </v-data-table>
 
           <!-- <v-btn @click="agregarArticulo">
@@ -112,12 +120,19 @@
               <!-- <v-btn @click="pruebarda">
                 pruebarda
               </v-btn> -->
-              <v-btn color="primary" @click="e1 = 2; addArticulosConEnvioDomicilio()" class="mt-5">
-                Continue
+              <v-btn
+                color="primary"
+                @click="
+                  e1 = 2;
+                  addArticulosConEnvioDomicilio();
+                "
+                class="mt-5"
+              >
+                Continuar
               </v-btn>
               <!-- :disabled="articulosSeleccionados.length < 1" -->
               <v-btn text class="mt-5">
-                Cancel
+                Cancelar
               </v-btn>
             </v-col>
           </v-row>
@@ -276,11 +291,18 @@
                 @click="e1 = 3"
                 class="mt-5"
               >
-                Continue
+                Continuar
               </v-btn>
               <!-- @click="validarCliente" -->
-              <v-btn text @click="e1 = 1 ; envioDomicilioArticulos = []" class="mt-5">
-                Cancel
+              <v-btn
+                text
+                @click="
+                  e1 = 1;
+                  envioDomicilioArticulos = [];
+                "
+                class="mt-5"
+              >
+                Cancelar
               </v-btn>
             </v-col>
           </v-row>
@@ -290,82 +312,74 @@
           <v-card class="mb-12" height="400px">
             <v-card-text>
               <v-row>
-                <v-col>
+                <v-col cols="3">
                   <v-card>
                     <v-card-title>
                       Datos del cliente
                     </v-card-title>
                     <v-card-text>
                       <v-text-field
-                      dense
-                      outlined
-                      v-model="nombre"
-                      readonly
-                      label="Nombre"
+                        dense
+                        outlined
+                        v-model="nombre"
+                        readonly
+                        label="Nombre"
                       >
-
-                      </v-text-field>
-                       <v-text-field
-                      dense
-                      outlined
-                      v-model="apellido"
-                      readonly
-                      label="Apellido"
-                      >
-
-                      </v-text-field>
-                         <v-text-field
-                      dense
-                      outlined
-                      v-model="documento"
-                      readonly
-                      label="Documento"
-                      >
-
                       </v-text-field>
                       <v-text-field
-                      dense
-                      outlined
-                      v-model="direccionEnvio"
-                      label="Direccion de envio"
+                        dense
+                        outlined
+                        v-model="apellido"
+                        readonly
+                        label="Apellido"
                       >
-
+                      </v-text-field>
+                      <v-text-field
+                        dense
+                        outlined
+                        v-model="documento"
+                        readonly
+                        label="Documento"
+                      >
+                      </v-text-field>
+                      <v-text-field
+                        dense
+                        outlined
+                        v-model="direccionEnvio"
+                        label="Dirección de envio"
+                      >
                       </v-text-field>
                     </v-card-text>
                   </v-card>
                 </v-col>
                 <v-col>
-                  <v-list dense elevation="3">
-                <v-subheader>Articulos con envio a domicilio</v-subheader>
-                <v-list-item-group color="primary">
-                  <v-list-item
-                    v-for="(item, i) in envioDomicilioArticulos"
-                    :key="i"
-                  > 
-                    <v-list-item-content
-                     
-                    >
-                      <v-list-item-title
-                        v-text="item"
-                      ></v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
+                  <v-card>
+                    <v-card-title>
+                      Envio a domicilio
+                    </v-card-title>
+                    <v-card-text>
+                      <v-data-table
+                        :headers="articulosDomicilioHeaders"
+                        :items-per-page="5"
+                        :items="envioDomicilioArticulos"
+                        class="elevation-1"
+                      >
+                        </v-data-table>
+                    </v-card-text>
+                  </v-card>
                 </v-col>
               </v-row>
-              
             </v-card-text>
           </v-card>
 
           <v-row>
             <v-col class="text-right">
               <v-btn color="primary" @click="finalizar">
-                Continue
+                Continuar
               </v-btn>
 
               <v-btn text @click="e1 = 2">
-                Cancel
+                Cacelar
               </v-btn>
             </v-col>
           </v-row>
@@ -385,6 +399,14 @@ export default {
   data() {
     return {
       e1: 1,
+      articulosDomicilioHeaders: [
+        { text: "Nombre", value: "nombre", width: 110 },
+        { text: "Cantidad", value: "cantidad", width: 50 },
+        //{ text: "Precio", value: "precio", width: 100 },
+        { text: "Fecha entrega", value: "fechaEntrega", width: 100 },
+       // { text: "Venta Futuro", value: "ventaFuturo", width: 70 },
+      ],
+
       headers: [
         {
           text: "Id Artículo",
@@ -395,6 +417,7 @@ export default {
         },
         { text: "Nombre", value: "nombre", width: 110 },
         { text: "Cantidad", value: "cantidad", width: 50 },
+        { text: "Precio", value: "precio", width: 100 },
         { text: "Modo Retiro", value: "modoDeRetiroSeleccionado", width: 110 },
         {
           text: "Cantidad Disponible",
@@ -471,105 +494,116 @@ export default {
           nombre: "Tornillo  5 cm",
           cantidadDisponible: 3500,
           precio: "$ 11.00",
+          precioNum:11,
           bajoDemanda: false,
-          localizacion: ['Local','Domicilio'],
+          localizacion: ["Local", "Domicilio"],
         },
         {
           idArticulo: "t002",
           nombre: "Tornillo 8 cm",
           cantidadDisponible: 3200,
-          precio: "$ 13.00",
+          precio: "$ 2.00",
+          precioNum:2,
           bajoDemanda: false,
-          localizacion: ['Local','Domicilio'],
+          localizacion: ["Local", "Domicilio"],
         },
         {
           idArticulo: "p001",
           nombre: "Pastina negra 1 Kg",
           cantidadDisponible: 30,
           precio: "$ 201.00",
+          precioNum: 201,
           bajoDemanda: false,
-          localizacion: ['Deposito 1','Domicilio'],
+          localizacion: ["Deposito 1", "Domicilio"],
         },
         {
           idArticulo: "b001",
           nombre: "Buje reducción rosca",
           cantidadDisponible: 300,
           precio: "$ 51.00",
+          precioNum: 51,
           bajoDemanda: false,
-          localizacion: ['Local','Domicilio'],
+          localizacion: ["Local", "Domicilio"],
         },
         {
           idArticulo: "e001",
           nombre: "Entrerrosca de bronce 3/8",
           cantidadDisponible: 300,
           precio: "$ 106.00",
+          precioNum: 106,
           bajoDemanda: false,
-          localizacion: ['Local','Domicilio'],
+          localizacion: ["Local", "Domicilio"],
         },
         {
           idArticulo: "ba001",
           nombre: "Bañera",
           cantidadDisponible: 0,
           precio: "$ 19000.00",
+          precioNum: 19000,
           bajoDemanda: true,
-          localizacion: ['Local','Domicilio'],
+          localizacion: ["Local", "Domicilio"],
         },
         {
           idArticulo: "pl001",
           nombre: "Plavicon sellador 25 gr",
           cantidadDisponible: 250,
           precio: "$ 18000.00",
+          precioNum: 18000,
           bajoDemanda: false,
-          localizacion: ['Deposito 2','Domicilio'],
+          localizacion: ["Deposito 2", "Domicilio"],
         },
         {
           idArticulo: "h001",
           nombre: "Hierro nervado 20 mm",
           cantidadDisponible: 450,
           precio: "$ 5280.00",
+          precioNum: 5280,
           bajoDemanda: false,
-          localizacion: ['Deposito 1','Domicilio'],
+          localizacion: ["Deposito 1", "Domicilio"],
         },
-         {
+        {
           idArticulo: "c001",
           nombre: "Chapa sinusoidal 3.50 mm",
           cantidadDisponible: 1500,
           precio: "$ 5548.00",
+          precioNum: 5548,
           bajoDemanda: false,
-          localizacion: ['Deposito','Domicilio'],
+          localizacion: ["Deposito", "Domicilio"],
         },
-          {
+        {
           idArticulo: "l001",
           nombre: "Ladrillo ceramico 12 x 18 x 33",
           cantidadDisponible: 3500,
           precio: "$ 59.00",
+          precioNum: 59,
           bajoDemanda: false,
-          localizacion: ['Deposito 2','Domicilio'],
+          localizacion: ["Deposito 2", "Domicilio"],
         },
         {
           idArticulo: "l002",
           nombre: "Ladrillo ceramico 18 x 18 x 33",
           cantidadDisponible: 4500,
           precio: "$ 90.00",
+          precioNum: 90,
           bajoDemanda: false,
-          localizacion: ['Deposito 2','Domicilio'],
+          localizacion: ["Deposito 2", "Domicilio"],
         },
       ],
 
-      clientes : [
+      clientes: [
         {
-        cuil: 2013456788,
-        nombre: "Juan",
-        apellido: "Carlos",
-        documento: 1345678,
-        telefono: "3447 678754",
-        correo: "algo@gmail.com",
-        direccion: "calle false 123",
-        provincia: "30",
-        departamento: "30098",
-        ciudad: '30098040000',
-      }
-      ]
+          cuil: 2013456788,
+          nombre: "Juan",
+          apellido: "Carlos",
+          documento: 1345678,
+          telefono: "3447 678754",
+          correo: "correo@gmail.com",
+          direccion: "Rocamora 789",
+          provincia: "30",
+          departamento: "30098",
+          ciudad: "30098040000",
+        },
+      ],
     };
   },
 
@@ -597,7 +631,7 @@ export default {
       "fetchDepartamentos",
       "fetchCiudades",
       "addCliente",
-      "fetchClientes",
+     // "fetchClientes",
     ]),
 
     // agregarArticulo(){
@@ -666,9 +700,9 @@ export default {
         this.departamento = cliente.departamento;
         this.ciudad = cliente.ciudad;
         this.soloLectura = true;
-        this.direccionEnvio = this.direccion
+        this.direccionEnvio = this.direccion;
 
-        console.log('ciudad',this.ciudad)
+        console.log("ciudad", this.ciudad);
       } else {
         Swal.fire({
           title: "Cliente no registrado",
@@ -792,11 +826,10 @@ export default {
       this.$refs.formArticulos.reset();
     },
 
-    addArticulosConEnvioDomicilio(){
-      
-      this.articulosSeleccionados.forEach(articulo => {
-        if(articulo.modoDeRetiroSeleccionado == 'domicilio'){
-          this.envioDomicilioArticulos.push(articulo.nombre)
+    addArticulosConEnvioDomicilio() {
+      this.articulosSeleccionados.forEach((articulo) => {
+        if (articulo.modoDeRetiroSeleccionado == "Domicilio") {
+          this.envioDomicilioArticulos.push(articulo);
         }
       });
     },
@@ -806,14 +839,16 @@ export default {
       console.log("ahora", this.articulosSeleccionados);
     },
 
-     finalizar(){
-        Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Venta finalizada',
+    finalizar() {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Venta finalizada",
         showConfirmButton: true,
-        })
-    }
+      });
+    },
+
+    //calcular()
   },
   computed: {
     ...mapGetters({
@@ -823,6 +858,18 @@ export default {
       ciudades: "getCiudades",
       //clientes: "getClientes",
     }),
+
+    total : function() {
+      let total = 0
+
+      if( this.articulosSeleccionados.length != 0) {
+        this.articulosSeleccionados.forEach(articulo => {
+        total  += articulo.cantidad * articulo.precioNum
+      });
+      }
+      return total
+    }
+
   },
 };
 </script>

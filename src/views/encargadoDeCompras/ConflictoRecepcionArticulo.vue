@@ -65,6 +65,10 @@
               <v-checkbox  class="ml-3" v-model="item.resolver"></v-checkbox>
             </template>
 
+            <template v-slot:[`item.ordenCompra`]="{ item }">
+              <v-checkbox  class="ml-3" v-model="item.ordenCompra"></v-checkbox>
+            </template>
+
             <template v-slot:[`item.fechaPactada`]="{ item }">
               <v-text-field
                     hide-details
@@ -100,7 +104,7 @@
         </v-card-text>
         <v-card-actions class="justify-end">
           <v-btn>Cancelar</v-btn>
-          <v-btn v-if="radioButton == 'faltante'" @click="mensajeNota" color="primary">Solicitar nota credito</v-btn>
+          <v-btn v-if="radioButton == 'faltante'" @click="mensajeNota" color="primary">Resolver</v-btn>
           <v-btn v-if="radioButton == 'exceso'" @click="mensajeOrden" color="primary">Generar orden de compra</v-btn>
         </v-card-actions>
       </v-card>
@@ -118,19 +122,19 @@ export default {
       radioButton: null,
       headersExceso: [
         {
-          text: "Articulo",
+          text: "Artículo",
           align: "start",
           sortable: false,
           value: "articulo",
           width: 150
         },
         { text: "Orden compra", value: "ordenPedido",width: 70 },
-        { text: "Cantidad comprada", value: "cantidadComprada",width: 70 },
-        { text: "Cantdad recibida", value: "cantidadRecibida", width: 70},
-        { text: "Cantdad a devolver", value: "cantidadDevolver", width: 100},
+        { text: "Cantidad comprada", value: "cantidadComprada",width: 60 },
+        { text: "Cantidad recibida", value: "cantidadRecibida", width: 60},
+        { text: "Cantidad a devolver", value: "cantidadDevolver", width: 100},
         { text: "Proveedor", value: "proveedor",width: 100},
         { text: "Fecha", value: "fecha", width: 100},
-        { text: "Fecha Pactada", value: "fechaPactada" , width: 130 },
+       // { text: "Fecha Pactada", value: "fechaPactada" , width: 130 },
         { text: "Resolver", value: "resolver",width: 50 },
       ],
 
@@ -143,12 +147,13 @@ export default {
           width: 150
         },
         { text: "Orden compra", value: "ordenPedido",width: 70 },
-        { text: "Cantidad comprada", value: "cantidadComprada",width: 70 },
-        { text: "Cantdad recibida", value: "cantidadRecibida", width: 70},
+        { text: "Cantidad comprada", value: "cantidadComprada",width: 60 },
+        { text: "Cantidad recibida", value: "cantidadRecibida", width: 60},
         { text: "Proveedor", value: "proveedor",width: 100},
         { text: "Fecha", value: "fecha", width: 100},
         { text: "Fecha Pactada", value: "fechaPactada" , width: 130 },
-        { text: "Resolver", value: "resolver",width: 50 },
+        { text: "Solicitar Nota de credito", value: "resolver",width: 50 },
+        { text: "Generar Orden de compra", value: "ordenCompra",width: 50 },
       ],
 
       headers: [
@@ -176,6 +181,7 @@ export default {
           proveedor: "Proveedor 1",
           fechaPactada: null,
           ordenPedido: 'O023',
+          ordenCompra: null,
           fecha: this.restarDiasFecha(
             new Date(),
             Math.floor(Math.random() * (10 - 1) + 1)
@@ -192,6 +198,7 @@ export default {
           proveedor: "Proveedor 1",
           fechaPactada: null,
           ordenPedido: 'O023',
+          ordenCompra: null,
           fecha: this.restarDiasFecha(
             new Date(),
             Math.floor(Math.random() * (10 - 1) + 1)
@@ -208,6 +215,7 @@ export default {
           proveedor: "Proveedor 2",
           fechaPactada: null,
           ordenPedido: 'O025',
+          ordenCompra: null,
           fecha: this.restarDiasFecha(
             new Date(),
             Math.floor(Math.random() * (10 - 1) + 1)
@@ -224,6 +232,7 @@ export default {
           proveedor: "Proveedor 2",
           fechaPactada: null,
           ordenPedido: 'O023',
+          ordenCompra: null,
           fecha: this.restarDiasFecha(
             new Date(),
             Math.floor(Math.random() * (10 - 1) + 1)
@@ -240,6 +249,7 @@ export default {
           proveedor: "Proveedor 3",
           fechaPactada: null,
           ordenPedido: 'O025',
+          ordenCompra: null,
           fecha: this.restarDiasFecha(
             new Date(),
             Math.floor(Math.random() * (10 - 1) + 1)
@@ -259,6 +269,7 @@ export default {
           proveedor: "Proveedor 1",
           fechaPactada: null,
           ordenPedido: 'O023',
+          ordenCompra: null,
           fecha: this.restarDiasFecha(
             new Date(),
             Math.floor(Math.random() * (10 - 1) + 1)
@@ -272,6 +283,7 @@ export default {
           cantidadComprada: "1000",
           cantidadRecibida: "1200",
           cantidadDevolver: null,
+          ordenCompra: null,
           proveedor: "Proveedor 1",
           fechaPactada: null,
           ordenPedido: 'O023',
@@ -288,6 +300,7 @@ export default {
           cantidadComprada: "700",
           cantidadRecibida: "750",
           cantidadDevolver: null,
+          ordenCompra: null,
           proveedor: "Proveedor 2",
           fechaPactada: null,
           ordenPedido: 'O025',
@@ -304,6 +317,7 @@ export default {
           cantidadComprada: "900",
           cantidadRecibida: "750",
           cantidadDevolver: null,
+          ordenCompra: null,
           proveedor: "Proveedor 2",
           fechaPactada: null,
           ordenPedido: 'O023',
@@ -320,6 +334,7 @@ export default {
           cantidadComprada: "500",
           cantidadRecibida: "400",
           cantidadDevolver: null,
+          ordenCompra: null,
           proveedor: "Proveedor 3",
           fechaPactada: null,
           ordenPedido: 'O025',

@@ -15,7 +15,15 @@
                 :items="articulos"
                 :items-per-page="5"
                 class="elevation-1"
-              ></v-data-table>
+              >
+                <template
+              v-slot:footer
+            >
+              <div class=" ml-3 mt-4">
+               Total: ${{total}}.00
+              </div>
+            </template>
+              </v-data-table>
             </v-card-text>
           </v-card>
         </v-col>
@@ -134,6 +142,7 @@ export default {
           presentacion: "1 Kg",
           cantidad: "10",
           precio: "$ 201",
+          precioNum: 201,
           modoRetiro: "Envio a domicilio",
           fechaEntrega: new Date().toISOString().substr(0, 10),
 
@@ -143,6 +152,7 @@ export default {
           presentacion: "3/8",
           cantidad: "1",
           precio: "$ 19000",
+          precioNum: 19000,
           modoRetiro: "Envio a domicilio",
           fechaEntrega: new Date().toISOString()
             .substr(0, 10),
@@ -152,6 +162,7 @@ export default {
           presentacion: "20 mm",
           cantidad: "4",
           precio: "$ 5280",
+          precioNum: 5280,
           modoRetiro: "Envio a domicilio",
           fechaEntrega: new Date().toISOString()
             .substr(0, 10),
@@ -161,7 +172,7 @@ export default {
       clienteNombre: "Roberto",
       clienteApellido: "Carlos",
       clienteDni: " 23457612",
-      clienteTelefono: "568734",
+      clienteTelefono: " 3442 568734",
       clienteCorreo: "correo@gmail.com",
       direccionEnvio: null,
 
@@ -194,6 +205,19 @@ export default {
         })
     }
   },
+
+  computed: {
+      total : function() {
+      let total = 0
+
+      if( this.articulos.length != 0) {
+        this.articulos.forEach(articulo => {
+        total  += articulo.cantidad * articulo.precioNum
+      });
+      }
+      return total
+    }
+  }
 };
 </script>
 
