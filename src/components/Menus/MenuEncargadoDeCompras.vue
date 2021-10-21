@@ -36,7 +36,7 @@ export default {
         { title: 'Generar orden de compra por orden de pedido', link: "/generarOrdenDecompraPorOrenDePedido" },
         { title: 'Resolver conflictos en la recepción de artículo', link: "/conflictoRecepcionArticulo" },
         { title: 'Evaluación del proveedor respecto a la resolución de inconsistencia', link: "/evaluacionProveedorInconsitencias" },
-        { title: 'Generar Orden de Compra por Orden de Pedido', link: "/generarOrdenDeCompraPorStockReducido" },
+        { title: 'Generar Orden de Compra por stock reducido', link: "/generarOrdenDeCompraPorStockReducido" },
         
       ],
         };

@@ -13,6 +13,10 @@
             :items="ordenesPedido"
             :items-per-page="5"
             class="elevation-1"
+            :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
           >
             <template v-slot:footer>
               <div class=" ml-3 mt-4">Total: ${{ total }}.00</div>
@@ -43,11 +47,11 @@ export default {
           sortable: false,
           value: "articulo",
         },
-        { text: "Presentacion", value: "presentacion" },
+        { text: "Presentación", value: "presentacion" },
         { text: "Cantidad", value: "cantidad" },
         { text: "Precio", value: "precio" },
         { text: "Proveedor", value: "proveedor" },
-        { text: "Fecha creación", value: "fechaCreacion" },
+        { text: "Fecha de creación", value: "fechaCreacion" },
       ],
 
       ordenesPedido: [

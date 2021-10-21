@@ -8,10 +8,15 @@
             </v-card-title>
             <v-card-text>
                 <v-data-table
+                group-by="proveedor"
                     :headers="headers"
                     :items=" articulos"
                     :items-per-page="5"
                     class="elevation-1"
+                    :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
                 ></v-data-table>
             </v-card-text>
             <v-card-actions class="justify-end">
@@ -27,14 +32,22 @@
                     <h3 class="headline mb-0">Orden de compra generada</h3>
                 </div>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="pb-0">
                 <v-data-table
+                group-by="proveedor"
                     :headers="headersOrdenCompra"
                     :items=" articulos"
                     :items-per-page="5"
                     class="elevation-1"
+                     :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
                 ></v-data-table>
             </v-card-text>
+            <v-card-actions class="justify-end">
+                <v-btn class="mr-2" color="primary">Finalizar</v-btn>
+            </v-card-actions>
         </v-card>
     </v-container>
 </template>
@@ -55,13 +68,13 @@ export default {
           },
           { text: 'Nombre', value: 'nombre' },
           { text: 'Cantidad disponible', value: 'cantidadDisponible' },
-          { text: 'Stock minimo', value: 'stockMinimo' },
+          { text: 'Stock mínimo', value: 'stockMinimo' },
           { text: 'Stock recomendado', value: 'stockRecomendado' },
           { text: 'Proveedor', value: 'proveedor' },
         ],
         headersOrdenCompra: [
           { text: 'Nombre', value: 'nombre' ,width: 80},
-          { text: 'Cantidad comprada', value: 'stockRecomendado', width: 80},
+          { text: 'Cantidad comprada', value: 'stockAComprar', width: 80},
           { text: 'Proveedor', value: 'proveedor',width: 80 },
           { text: 'Fecha ', value: 'fechaActual', width: 80},  
         ],
@@ -71,9 +84,10 @@ export default {
             {
                 idArticulo: 't001',
                 nombre: 'Tornillo 5 cm',
-                cantidadDisponible: 2000,
-                stockMinimo: 1500,
+                cantidadDisponible: 1500 ,
+                stockMinimo: 2000 ,
                 stockRecomendado: 4000,
+                stockAComprar: 2500,
                 proveedor:'Proveedor 1',
                 fechaActual: new Date().toISOString()
             .substr(0, 10),
@@ -81,9 +95,10 @@ export default {
             {
                 idArticulo: 'pl001',
                 nombre:'Plavicon sellador 25 gr',
-                cantidadDisponible: 200,
+                cantidadDisponible: 2000,
                 stockMinimo: 2500,
                 stockRecomendado: 3000,
+                stockAComprar: 1000,
                 proveedor:'Proveedor 3',
                  fechaActual: new Date().toISOString()
             .substr(0, 10),
@@ -94,6 +109,7 @@ export default {
                 cantidadDisponible: 2000,
                 stockMinimo: 3000,
                 stockRecomendado: 6000,
+                stockAComprar: 4000,
                 proveedor:'Proveedor 1',
                  fechaActual: new Date().toISOString()
             .substr(0, 10),
@@ -104,6 +120,7 @@ export default {
                 cantidadDisponible: 1200,
                 stockMinimo: 1500,
                 stockRecomendado: 2500,
+                stockAComprar: 1300,
                 proveedor:'Proveedor 2',
                  fechaActual: new Date().toISOString()
             .substr(0, 10),
@@ -114,6 +131,7 @@ export default {
                 cantidadDisponible: 1560,
                 stockMinimo: 1600,
                 stockRecomendado: 2000,
+                stockAComprar: 440,
                 proveedor:'Proveedor 1',
                  fechaActual: new Date().toISOString()
             .substr(0, 10),
@@ -124,6 +142,7 @@ export default {
                 cantidadDisponible: 500,
                 stockMinimo: 600,
                 stockRecomendado: 1000,
+                stockAComprar: 500,
                 proveedor:'Proveedor 1',
                  fechaActual: new Date().toISOString()
             .substr(0, 10),
@@ -134,6 +153,7 @@ export default {
                 cantidadDisponible: 400,
                 stockMinimo: 600,
                 stockRecomendado: 1500,
+                stockAComprar: 1100,
                 proveedor:'Proveedor 1',
                  fechaActual: new Date().toISOString()
             .substr(0, 10),

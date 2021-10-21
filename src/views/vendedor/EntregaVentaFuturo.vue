@@ -63,7 +63,7 @@
                     ></v-text-field>
                      <v-text-field
               v-if="clienteDni"
-              label="Fecha retiro"
+              label="Fecha de retiro"
               v-model="fechaRetiro"
               outlined
               dense
@@ -80,7 +80,7 @@
             ></v-text-field>
              <v-text-field
               v-if="clienteDni"
-              label="Dirección Envio"
+              label="Dirección de envio"
               v-model="direccion"
               outlined
               dense
@@ -189,7 +189,7 @@
                     v-if="clienteDni"
                     v-model="item.modoRetiro"
                     :items="['Envio a domicilio', 'Deposito']"
-                    label="Modo Retiro"
+                    label="Modo de retiro"
                     outlined
                     hide-details
                     dense
@@ -227,9 +227,9 @@ export default {
           },
           { text: 'Cantidad', value: 'cantidad',width: 70 },
           { text: 'Cantidad disponible', value: 'cantidadDeposito', width: 70 },
-          { text: 'Fecha reposición', value: 'fechaEntrega',width: 100  },
+          { text: 'Fecha de reposición', value: 'fechaEntrega',width: 100  },
           { text: 'Cantidad a retirar', value: 'cantidadRetirar', width: 90  },
-          { text: 'Mode Retiro', value: 'modoRetiro',width: 100  },
+          { text: 'Modo de retiro', value: 'modoRetiro',width: 100  },
         ],
       titulo: "Ingrese el número de factura",
       facturas: [

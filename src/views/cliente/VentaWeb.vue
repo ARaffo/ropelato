@@ -11,6 +11,10 @@
             </v-card-title>
             <v-card-text>
               <v-data-table
+              :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
                 :headers="headers"
                 :items="articulos"
                 :items-per-page="5"
@@ -72,7 +76,7 @@
               <v-row>
                  <v-col cols="4">
                   <v-text-field
-                    label="Telefono"
+                    label="Teléfono"
                     v-model="clienteTelefono"
                     hide-details
                     outlined
@@ -93,7 +97,7 @@
                  <v-col cols="4">
                   <v-text-field
                     
-                    label="Direccion envio"
+                    label="Dirección de envío"
                     hide-details
                     v-model="direccionEnvio"
                     outlined
@@ -104,7 +108,7 @@
               </v-row>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn @click="finalizar"  color="primary">Confirmar envio</v-btn>
+              <v-btn @click="finalizar"  color="primary">Confirmar envío</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -131,8 +135,8 @@ export default {
         { text: "Presentación", value: "presentacion" },
         { text: "Cantidad", value: "cantidad" },
         { text: "Precio", value: "precio" },
-        { text: "Modo Retiro", value: "modoRetiro" },
-        { text: "Fecha Entrega", value: "fechaEntrega" },
+        { text: "Modo de retiro", value: "modoRetiro" },
+        { text: "Fecha de entrega", value: "fechaEntrega" },
         ,
       ],
 
@@ -143,7 +147,7 @@ export default {
           cantidad: "10",
           precio: "$ 201",
           precioNum: 201,
-          modoRetiro: "Envio a domicilio",
+          modoRetiro: "Envío  a domicilio",
           fechaEntrega: new Date().toISOString().substr(0, 10),
 
         },
@@ -153,7 +157,7 @@ export default {
           cantidad: "1",
           precio: "$ 19000",
           precioNum: 19000,
-          modoRetiro: "Envio a domicilio",
+          modoRetiro: "Envío  a domicilio",
           fechaEntrega: new Date().toISOString()
             .substr(0, 10),
         },
@@ -163,7 +167,7 @@ export default {
           cantidad: "4",
           precio: "$ 5280",
           precioNum: 5280,
-          modoRetiro: "Envio a domicilio",
+          modoRetiro: "Envío  a domicilio",
           fechaEntrega: new Date().toISOString()
             .substr(0, 10),
         },

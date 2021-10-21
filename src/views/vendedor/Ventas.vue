@@ -18,7 +18,7 @@
         <v-divider></v-divider>
 
         <v-stepper-step step="3">
-          Envio a domicilio
+          Envío  a domicilio
         </v-stepper-step>
       </v-stepper-header>
 
@@ -31,7 +31,7 @@
                   v-model="entradaIdArticulos"
                   dense
                   outlined
-                  label="Id Articulo"
+                  label="Id artículo"
                   v-on:keyup.enter="findArticuloById(entradaIdArticulos)"
                   findArticuloById
                   :rules="idArticuloRule"
@@ -65,7 +65,7 @@
                   :items="modoRetiroArticulo"
                   v-model="entradaModoRetiro"
                   hide-details
-                  label="Modo retiro"
+                  label="Modo de retiro"
                   dense
                   outlined
                   :rules="modoRetiroArticuloRule"
@@ -87,6 +87,10 @@
             :items="articulosSeleccionados"
             :items-per-page="5"
             class="elevation-1"
+            :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
           >
             <template v-slot:[`item.eliminar`]="{ item }">
               <v-icon
@@ -190,7 +194,7 @@
                     <v-text-field
                       outlined
                       v-model="telefono"
-                      label="Telefono"
+                      label="Teléfono"
                       required
                       :rules="telefonoRule"
                     >
@@ -210,7 +214,7 @@
                     <v-text-field
                       outlined
                       v-model="direccion"
-                      label="Direccion"
+                      label="Dirección"
                       required
                       :rules="direccionRule"
                     >
@@ -355,7 +359,7 @@
                 <v-col>
                   <v-card>
                     <v-card-title>
-                      Envio a domicilio
+                      Envío  a domicilio
                     </v-card-title>
                     <v-card-text>
                       <v-data-table
@@ -363,6 +367,10 @@
                         :items-per-page="5"
                         :items="envioDomicilioArticulos"
                         class="elevation-1"
+                        :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
                       >
                         </v-data-table>
                     </v-card-text>
@@ -403,7 +411,7 @@ export default {
         { text: "Nombre", value: "nombre", width: 110 },
         { text: "Cantidad", value: "cantidad", width: 50 },
         //{ text: "Precio", value: "precio", width: 100 },
-        { text: "Fecha entrega", value: "fechaEntrega", width: 100 },
+        { text: "Fecha de entrega", value: "fechaEntrega", width: 100 },
        // { text: "Venta Futuro", value: "ventaFuturo", width: 70 },
       ],
 
@@ -418,14 +426,14 @@ export default {
         { text: "Nombre", value: "nombre", width: 110 },
         { text: "Cantidad", value: "cantidad", width: 50 },
         { text: "Precio", value: "precio", width: 100 },
-        { text: "Modo Retiro", value: "modoDeRetiroSeleccionado", width: 110 },
+        { text: "Modo de retiro", value: "modoDeRetiroSeleccionado", width: 110 },
         {
-          text: "Cantidad Disponible",
+          text: "Cantidad disponible",
           value: "cantidadDisponible",
           width: 110,
         },
-        { text: "Fecha entrega", value: "fechaEntrega", width: 100 },
-        { text: "Venta Futuro", value: "ventaFuturo", width: 70 },
+        { text: "Fecha de entrega", value: "fechaEntrega", width: 100 },
+        { text: "Venta futuro", value: "ventaFuturo", width: 80 },
         { text: "Eliminar", value: "eliminar", sorteable: false, width: 100 },
       ],
 
