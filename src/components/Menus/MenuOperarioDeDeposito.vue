@@ -34,9 +34,12 @@ export default {
         return {
             items: [
         { title: 'Entrega de artículo al cliente en depósito', link: "/entregaArticuloClienteEnDeposito" },
+        { title: 'Salida de artículo del depósito por orden de carga', link: "/salidaArticulosDepositoOrdenDeCarga" },
+        { title: 'Gestionar devolución', link: "/gestionarDevolucion" },
       ],
         };
     },
+
 
     mounted() {
         

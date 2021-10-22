@@ -56,12 +56,18 @@ const routes = [
     path: '/entregaArticuloClienteEnDeposito',
     name: 'Entrega de artículo al cliente en depósito',
     component: () => import('../views/operarioDeDeposito/EntregaArticuloClienteEnDeposito')
+  },
+  {
+    path: '/salidaArticulosDepositoOrdenDeCarga',
+    name: 'Salida de artículo del depósito por orden de carga',
+    component: () => import('../views/operarioDeDeposito/SalidaArticulosDepositoOrdenDeCarga')
+  },
+  {
+    path: '/gestionarDevolucion',
+    name: 'Gestionar devolución',
+    component: () => import('../views/operarioDeDeposito/GestionarDevolucion')
   }
 
-
-
-
-  
   
 ]
 
