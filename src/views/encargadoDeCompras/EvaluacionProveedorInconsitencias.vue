@@ -18,7 +18,16 @@
               @click="proveedorSelected = item.text"
             >
               <v-list-item-content>
-                <v-list-item-title v-text="item.text"></v-list-item-title>
+                <v-row>
+                  <v-col>
+                    <v-list-item-title class="mt-2" v-text="item.text"></v-list-item-title>
+                  </v-col>
+                  <v-col class="text-right">
+                    <v-chip > {{item.num}} </v-chip>
+                  </v-col>
+                </v-row>
+                
+                
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -43,6 +52,10 @@
           :items="inconsistencias"
           :items-per-page="5"
           class="elevation-1"
+           :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
         >
           <template v-slot:[`item.resolver`]="{ item }">
             <v-checkbox class="ml-3" v-model="item.resolver"></v-checkbox>
@@ -280,7 +293,7 @@ export default {
       proveedorSelected: null,
       headers: [
         {
-          text: "Inconsistencia id",
+          text: "Inconsistencia",
           align: "start",
           sortable: false,
           value: "inconsistenciaId",
@@ -288,8 +301,8 @@ export default {
         { text: "Artículo", value: "articulo" },
         { text: "Cantidad", value: "cantidad" },
         { text: "Fecha pactada con proveedor", value: "fechaPactada" },
-        { text: "Fecha resolución", value: "fechaResolucion" },
-        { text: "Resolver", value: "resolver" },
+        { text: "Fecha de resolución", value: "fechaResolucion" },
+        { text: "Evaluar", value: "resolver" },
       ],
 
       inconsistencias: [
@@ -354,10 +367,10 @@ export default {
 
       selectedItem: null,
       proveedores: [
-        { text: "Proveedor 1" },
-        { text: "Proveedor 2" },
-        { text: "Proveedor 3" },
-        { text: "Proveedor 4" },
+        { text: "Proveedor 1" , num: '4' },
+        { text: "Proveedor 2",num: '7' },
+        { text: "Proveedor 3",num: '9' },
+        { text: "Proveedor 4" ,num: '2'},
       ],
     };
   },

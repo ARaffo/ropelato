@@ -64,14 +64,14 @@ export default {
             pantallaArticulos: false,
              headers: [
           {
-            text: 'Id orden',
+            text: 'Orden de carga',
             align: 'start',
             sortable: false,
             value: 'idOrden',
           },
-          { text: 'Camion', value: 'camion' },
+          { text: 'Camión', value: 'camion' },
           { text: 'Fecha', value: 'fecha' },
-          { text: 'Deposito origen', value: 'depositoOrigen' },
+          { text: 'Deposito de origen', value: 'depositoOrigen' },
           { text: 'Seleccionar', value: 'seleccionar' },
         ],
 
@@ -84,14 +84,13 @@ export default {
           },
           { text: 'Nombre', value: 'nombre' },
           { text: 'Cantidad', value: 'cantidad' },
-          { text: 'Se encuentra en camion', value: 'enCamion' },
           { text: 'Transito interno', value: 'interno' },
         ],
 
         ordensDeCarga: [
             {
                 idOrden: 'O00189',
-                camion: 'Camion 1',
+                camion: 'Camión 1',
                 fecha:  new Date().toISOString()
                         .substr(0, 10),
                 depositoOrigen: 'Deposito 1',
@@ -99,7 +98,7 @@ export default {
             },
             {
                 idOrden: 'O00190',
-                camion: 'Camion 1',
+                camion: 'Camión 1',
                 fecha: new Date().toISOString()
                         .substr(0, 10),
                 depositoOrigen: 'Deposito 2',
@@ -107,7 +106,7 @@ export default {
             },
             {
                 idOrden: 'O00191',
-                camion: 'Camion 2',
+                camion: 'Camión 2',
                 fecha: new Date().toISOString()
                         .substr(0, 10),
                 depositoOrigen: 'Deposito 1',
@@ -115,7 +114,7 @@ export default {
             },
             {
                 idOrden: 'O00192',
-                camion: 'Camion 2',
+                camion: 'Camión 2',
                 fecha: new Date().toISOString()
                         .substr(0, 10),
                 depositoOrigen: 'Deposito 2',

@@ -60,6 +60,10 @@
             :items-per-page="5"
             :items="articulosFiltrados"
             class="elevation-1"
+             :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
           >
           <template v-slot:[`item.resolver`]="{ item }">
               <v-checkbox  class="ml-3" v-model="item.resolver"></v-checkbox>
@@ -85,6 +89,10 @@
             :items-per-page="5"
             :items="articulosFiltrados"
             class="elevation-1"
+             :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
           >
           <template v-slot:[`item.resolver`]="{ item }">
               <v-checkbox  class="ml-3" v-model="item.resolver"></v-checkbox>
@@ -128,7 +136,7 @@ export default {
           value: "articulo",
           width: 150
         },
-        { text: "Orden compra", value: "ordenPedido",width: 70 },
+        { text: "Orden de compra", value: "ordenPedido",width: 70 },
         { text: "Cantidad comprada", value: "cantidadComprada",width: 60 },
         { text: "Cantidad recibida", value: "cantidadRecibida", width: 60},
         { text: "Cantidad a devolver", value: "cantidadDevolver", width: 100},
@@ -146,7 +154,7 @@ export default {
           value: "articulo",
           width: 150
         },
-        { text: "Orden compra", value: "ordenPedido",width: 70 },
+        { text: "Orden de compra", value: "ordenPedido",width: 70 },
         { text: "Cantidad comprada", value: "cantidadComprada",width: 60 },
         { text: "Cantidad recibida", value: "cantidadRecibida", width: 60},
         { text: "Proveedor", value: "proveedor",width: 100},
@@ -158,17 +166,17 @@ export default {
 
       headers: [
         {
-          text: "Articulo",
+          text: "Artículo",
           align: "start",
           sortable: false,
           value: "articulo",
-          width: 150
+          width: 120
         },
-        { text: "Orden compra", value: "ordenPedido",width: 70 },
-        { text: "Cantidad comprada", value: "cantidadComprada",width: 70 },
-        { text: "Cantdad recibida", value: "cantidadRecibida", width: 70},
-        { text: "Proveedor", value: "proveedor",width: 100},
-        { text: "Fecha", value: "fecha", width: 100},
+        { text: "Orden de compra", value: "ordenPedido",width: 80 },
+        { text: "Cantidad comprada", value: "cantidadComprada",width: 60 },
+        { text: "Cantidad recibida", value: "cantidadRecibida", width: 50},
+        { text: "Proveedor", value: "proveedor",width: 70},
+        { text: "Fecha", value: "fecha", width: 60},
         { text: "Resolver", value: "resolver",width: 50 },
       ],
 

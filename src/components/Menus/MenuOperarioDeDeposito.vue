@@ -36,6 +36,11 @@ export default {
         { title: 'Entrega de artículo al cliente en depósito', link: "/entregaArticuloClienteEnDeposito" },
         { title: 'Salida de artículo del depósito por orden de carga', link: "/salidaArticulosDepositoOrdenDeCarga" },
         { title: 'Gestionar devolución', link: "/gestionarDevolucion" },
+        { title: 'Recibir artículo del proveedor', link: "/recibirArticuloDelProveedor" },
+        { title: 'Ordenar artículos en depósito', link: "/ordenarArticulosDeposito" },
+        { title: 'Control de inventario', link: "/controlDeInventario" },
+        
+        
       ],
         };
     },

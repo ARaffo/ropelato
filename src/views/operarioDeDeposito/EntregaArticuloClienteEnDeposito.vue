@@ -34,6 +34,10 @@
           :items="facturas[0].lineaFactura"
           :items-per-page="5"
           class="elevation-1"
+          :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
         >
         </v-data-table>
       </v-card-text>
@@ -53,15 +57,19 @@
     >
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Generar Remito venta
+          Generar remito de venta
         </v-card-title>
 
         <v-card-text class="mt-2">
             <v-data-table
-          :headers="headers"
+          :headers="headersRemito"
           :items="facturas[0].lineaFactura"
           :items-per-page="5"
           class="elevation-1"
+          :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
         >
         </v-data-table>
 
@@ -88,7 +96,8 @@
 
     <v-dialog
       v-model="dialogFirma"
-      width="300"
+      width="600"
+
     >
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
@@ -99,7 +108,6 @@
          <v-textarea
           solo
           name="input-7-4"
-          label="Firme aqui"
         ></v-textarea>
 
 
@@ -145,7 +153,21 @@ export default {
           width: 70,
         },
         { text: "Cantidad a entregar", value: "cantidad", width: 70 },
-        { text: "Cantidad disponible", value: "cantidadDeposito", width: 70 },
+        { text: "Cantidad entregable", value: "cantidadDeposito", width: 70 },
+      ],
+
+      headersRemito: [
+        { text: "Id Artículo", value: "id", width: 70 },
+        {
+          text: "Artículo",
+          align: "start",
+          sortable: false,
+          value: "articulo",
+          width: 70,
+        },
+        { text: "Precio", value: "precio", width: 70 },
+        { text: "Cantidad a entregar", value: "cantidad", width: 70 },
+
       ],
 
       facturas: [
@@ -163,9 +185,10 @@ export default {
               cantidad: "20",
               precio: "$ 11.00",
               cantidadARetirar: null,
-              cantidadDeposito: 500,
+              cantidadDeposito: 35,
               fechaEntrega: "25-10-2021",
               modoRetiro: null,
+              descriocion: null
             },
             {
               id: "l002",
@@ -173,9 +196,10 @@ export default {
               cantidad: "56",
               precio: "$ 201.00",
               fechaEntrega: "20-10-2021",
-              cantidadDeposito: 1450,
+              cantidadDeposito: 60,
               cantidadARetirar: null,
               modoRetiro: null,
+               descriocion: null
             },
           ],
         },

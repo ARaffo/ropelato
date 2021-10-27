@@ -66,8 +66,24 @@ const routes = [
     path: '/gestionarDevolucion',
     name: 'Gestionar devolución',
     component: () => import('../views/operarioDeDeposito/GestionarDevolucion')
-  }
+  },
+  {
+    path: '/recibirArticuloDelProveedor',
+    name: 'Recibir artículo del proveedor',
+    component: () => import('../views/operarioDeDeposito/RecibirArticuloDelProveedor')
+  },
+  {
+    path: '/ordenarArticulosDeposito',
+    name: 'Ordenar artículos en depósito',
+    component: () => import('../views/operarioDeDeposito/OrdenarArticulosDeposito')
+  },
+  {
+    path: '/controlDeInventario',
+    name: 'Control de inventario',
+    component: () => import('../views/operarioDeDeposito/ControlDeInventario')
+  },
 
+  
   
 ]
 
