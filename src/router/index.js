@@ -82,9 +82,11 @@ const routes = [
     name: 'Control de inventario',
     component: () => import('../views/operarioDeDeposito/ControlDeInventario')
   },
-
-  
-  
+  {
+    path: '/generarOrdenCargaCamiones',
+    name: 'Generar ordenes de carga a camiones',
+    component: () => import('../views/encargadoDeLogistica/GenerarOrdenCargaCamiones')
+  },
 ]
 
 const router = new VueRouter({

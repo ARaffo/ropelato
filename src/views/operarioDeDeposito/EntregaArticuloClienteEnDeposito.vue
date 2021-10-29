@@ -53,7 +53,7 @@
 
     <v-dialog
       v-model="dialogRemito "
-      width="600"
+      width="700"
     >
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
@@ -96,16 +96,18 @@
 
     <v-dialog
       v-model="dialogFirma"
-      width="600"
+      max-width="800px"
+      
 
     >
-      <v-card>
+      <v-card  >
         <v-card-title class="text-h5 grey lighten-2">
           Firma digital
         </v-card-title>
 
-        <v-card-text class="mt-2 pb-0">
+        <v-card-text class="mt-2 pb-0" >
          <v-textarea
+         height="400"
           solo
           name="input-7-4"
         ></v-textarea>
@@ -157,7 +159,7 @@ export default {
       ],
 
       headersRemito: [
-        { text: "Id Artículo", value: "id", width: 70 },
+        { text: "Id artículo", value: "id", width: 70 },
         {
           text: "Artículo",
           align: "start",

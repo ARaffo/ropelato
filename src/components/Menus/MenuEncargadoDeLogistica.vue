@@ -14,6 +14,7 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
+          @click="ir(item.link)"
         >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import router from "@/router";
 export default {
     name: 'MenuEncargadoDeLogistica',
 
@@ -31,10 +33,7 @@ export default {
     data() {
         return {
             items: [
-        { title: 'Generar orden de carga de camiones' },
-        { title: '...' },
-        { title: '...' },
-        { title: '...' },
+        { title: 'Generar orden de carga de camiones',link: "/generarOrdenCargaCamiones" },
       ],
         };
     },
@@ -44,7 +43,9 @@ export default {
     },
 
     methods: {
-        
+          ir(ruta) {
+      router.push({ path: `${ruta}` });
+    }
     },
 };
 </script>

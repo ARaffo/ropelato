@@ -3,14 +3,14 @@
         <v-card width="400" v-if="!buscar">
             <v-card-title primary-title>
                 <div>
-                    <h3 class="headline mb-0">Depositos</h3>
+                    <h3 class="headline mb-0">Depósitos</h3>
                 </div>
             </v-card-title>
             <v-card-text>
                 <v-combobox
                 dense
                 outlined
-                :items="['Deposito 1', 'Deposito 2', 'Deposito 3']"
+                :items="['Depósito 1', 'Depósito 2', 'Depósito 3']"
                 v-model="deposito"
                 hide-details=""
                 ></v-combobox>
@@ -24,7 +24,7 @@
         <v-card width="850" v-else>
             <v-card-title primary-title>
                 <div>
-                    <h3 class="headline mb-0">Artículos deposito 1</h3>
+                    <h3 class="headline mb-0">Artículos en Depósito 1</h3>
                 </div>
             </v-card-title>
             <v-card-text>
@@ -103,14 +103,14 @@ export default {
             dialog: false,
              headers: [
           {
-            text: 'Id Artículo',
+            text: 'Id artículo',
             align: 'start',
             value: 'idArticulo',
             width: 80
           },
           { text: 'Nombre', value: 'nombre' ,width: 60},
           { text: 'Cantidad esperada', value: 'cantidadDisponible',width: 70 },
-          { text: 'Estanteria', value: 'estanteria',width: 60 },
+          { text: 'Estantería', value: 'estanteria',width: 60 },
           { text: 'Nivel', value: 'nivel',width: 60 },
           { text: 'Columna', value: 'columna' ,width: 60},
           { text: 'Cantidad relevada', value: 'cantidadRelevada' ,width: 70},

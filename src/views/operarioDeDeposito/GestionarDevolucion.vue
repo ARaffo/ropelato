@@ -13,6 +13,10 @@
           v-model="numeroFactura"
           outlined
           dense
+          :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
         ></v-text-field>
       </v-card-text>
       <v-card-actions class="justify-end mt-1">
@@ -73,6 +77,10 @@
             :items="articulosADevolver"
             :items-per-page="5"
             class="elevation-1"
+             :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
         >
          <template v-slot:[`item.cantidadDevolver`]="{ item }">
               <v-text-field
@@ -94,7 +102,7 @@
 
             @click="dialog = false"
           >
-            Generar Nota Credito
+            Generar Nota de Credito
           </v-btn>
             <v-btn @click="dialog = false; articulosADevolver = []"> 
               Cancelar
