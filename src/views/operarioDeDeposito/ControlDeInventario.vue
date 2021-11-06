@@ -16,8 +16,9 @@
                 ></v-combobox>
             </v-card-text>
             <v-card-actions class="justify-end">
+              <v-btn>Cancelar</v-btn>
                 <v-btn @click="buscar = true" color="primary">Aceptar</v-btn>
-                <v-btn>Cancelar</v-btn>
+                
             </v-card-actions>
         </v-card>
 
@@ -50,8 +51,9 @@
             </v-data-table>
             </v-card-text>
             <v-card-actions class="justify-end">
+                 <v-btn @click="buscar = false">Cancelar</v-btn>
                 <v-btn @click="dialog = true" color="primary">Aceptar</v-btn>
-                <v-btn @click="buscar = false">Cancelar</v-btn>
+             
             </v-card-actions>
         </v-card>
 

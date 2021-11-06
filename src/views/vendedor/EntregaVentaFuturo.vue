@@ -47,8 +47,10 @@
                         label="DNI"
                         v-model="clienteDni"
                         outlined
+                        hide-details
                         dense
                         readonly
+                        class="pb-0"
                         ></v-text-field>
                 </v-col>
                     <v-col>
@@ -66,7 +68,9 @@
               label="Fecha de retiro"
               v-model="fechaRetiro"
               outlined
+              hide-details
               dense
+              class="pb-0"
             ></v-text-field>
                     </v-col>
               <v-col>
@@ -78,16 +82,68 @@
               dense
               readonly
             ></v-text-field>
-             <v-text-field
-              v-if="clienteDni"
-              label="Dirección de envio"
-              v-model="direccion"
-              outlined
-              dense
-            ></v-text-field>
+            <v-select
+                        :items="dirEnvio "
+                        label="Provincia"
+                        v-model="dirProvincia"
+                        readonly
+                        hide-details
+                        outlined
+                        dense
+                        class="pt-0"
+                      ></v-select>
+                 
+              
               </v-col>
-          </v-row>
-           
+             </v-row>
+             <v-row>
+               <v-col cols="4">
+                  <v-select
+                      :items="dirEnvio "
+                      label="Ciudad"
+                      v-model="dirCiudad"
+                      outlined
+                      dense
+                      hide-details
+                      readonly
+                      class="pt-0"
+                    ></v-select>
+               </v-col>
+               <v-col cols="4">
+                  <v-text-field
+                      :items="['Rocamora']"
+                      label="Calle"
+                      v-model="calle"
+                      outlined
+                      dense
+                      hide-details
+                      readonly
+                    ></v-text-field>
+               </v-col>
+                <v-col cols="2">
+                        <v-text-field
+                        dense
+                        outlined
+                        v-model="numero"
+                        readonly
+                        label="Número"
+                      >
+                      </v-text-field>
+                      </v-col>
+                       <v-col cols="2">
+                        <v-text-field
+                        dense
+                        outlined
+                        v-model="departamento"
+                        readonly
+                        label="Piso/Depto"
+                      >
+                      </v-text-field>
+                      </v-col>
+             </v-row>
+            <!-- <v-row class="mt-3">
+                     
+                    </v-row> -->
            
            
            
@@ -111,70 +167,15 @@
             </div>
           </v-card-title>
           <v-card-text>
-            <!-- <div v-for="item in lineasFactura" :key="item.id">
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Artículo"
-                    v-model="item.articulo"
-                    outlined
-                    dense
-                    readonly
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="2">
-                  <v-text-field
-                    label="Cantidad"
-                    v-model="item.cantidad"
-                    outlined
-                    dense
-                    readonly
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Cantidad disponible"
-                    v-model="item.cantidadDeposito"
-                    outlined
-                    dense
-                    readonly
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="2">
-                  <v-text-field
-                    label="Fecha reposición"
-                    v-model="item.fechaEntrega"
-                    outlined
-                    dense
-                    readonly
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Cantidad a retirar"
-                    v-model="item.cantidadARetirar"
-                    outlined
-                    dense
-                    readonly
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-combobox
-                    v-if="clienteDni"
-                    v-model="item.modoRetiro"
-                    :items="['Envio a domicilio', 'Deposito']"
-                    label="Modo Retiro"
-                    outlined
-                    dense
-                  ></v-combobox>
-                </v-col>
-              </v-row>
-            </div> -->
             <v-data-table
             :headers="headers"
             :items="facturas[0].lineaFactura"
             :items-per-page="5"
             class="elevation-1"
+               :footer-props="{
+           'items-per-page-text':'Filas por página',
+           'pageText': '{0}-{1} de {2}'
+      }"
           >
            <template v-slot:[`item.cantidadRetirar`]="{ item }">
               <v-text-field
@@ -198,11 +199,12 @@
           </v-data-table>
           </v-card-text>
           <v-card-actions class="justify-end">
-            <v-btn color="primary">
-              Aceptar
-            </v-btn>
+            
              <v-btn>
               Cancelar
+            </v-btn>
+            <v-btn color="primary">
+              Aceptar
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -217,6 +219,14 @@ export default {
 
   data() {
     return {
+       dirEnvio : ['Rocamora 789','Entre Ríos','Concepción del Uruguay'],
+      dirProvincia: null,
+      dirCiudad: null,
+      dirDireccion: null,
+      numero: null,
+      piso: null,
+      departamento: null,
+      calle: null,
        headers: [
           {
             text: 'Artículo',

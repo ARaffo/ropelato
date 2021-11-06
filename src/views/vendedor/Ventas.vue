@@ -3,10 +3,10 @@
     <!-- <v-btn color="warning" @click="agregarArticulo">Save articulo</v-btn> -->
     <!-- <v-btn @click="ver"> articulos lo</v-btn> -->
 
-    <v-stepper v-model="e1" height="670">
+    <v-stepper v-model="e1" height="870">
       <v-stepper-header>
         <v-stepper-step :complete="e1 > 1" step="1">
-          Articulos
+          Artículos
         </v-stepper-step>
 
         <v-divider></v-divider>
@@ -124,6 +124,11 @@
               <!-- <v-btn @click="pruebarda">
                 pruebarda
               </v-btn> -->
+              
+              <!-- :disabled="articulosSeleccionados.length < 1" -->
+              <v-btn text class="mt-5">
+                Cancelar
+              </v-btn>
               <v-btn
                 color="primary"
                 @click="
@@ -133,10 +138,6 @@
                 class="mt-5"
               >
                 Continuar
-              </v-btn>
-              <!-- :disabled="articulosSeleccionados.length < 1" -->
-              <v-btn text class="mt-5">
-                Cancelar
               </v-btn>
             </v-col>
           </v-row>
@@ -266,15 +267,7 @@
           </v-card>
           <v-row v-if="modoAgregarCliente">
             <v-col>
-              <v-btn
-                :disabled="!valid"
-                color="primary"
-                @click="validarYGuardarCliente"
-                class="mt-5"
-              >
-                Guardar
-              </v-btn>
-
+             
               <v-btn
                 text
                 @click="
@@ -285,18 +278,20 @@
               >
                 Cancel
               </v-btn>
+               <v-btn
+                :disabled="!valid"
+                color="primary"
+                @click="validarYGuardarCliente"
+                class="mt-5"
+              >
+                Guardar
+              </v-btn>
+
             </v-col>
           </v-row>
           <v-row v-else>
             <v-col class="text-right">
-              <v-btn
-                :disabled="!valid"
-                color="primary"
-                @click="e1 = 3"
-                class="mt-5"
-              >
-                Continuar
-              </v-btn>
+             
               <!-- @click="validarCliente" -->
               <v-btn
                 text
@@ -308,15 +303,23 @@
               >
                 Cancelar
               </v-btn>
+               <v-btn
+                :disabled="!valid"
+                color="primary"
+                @click="e1 = 3"
+                class="mt-5"
+              >
+                Continuar
+              </v-btn>
             </v-col>
           </v-row>
         </v-stepper-content>
 
         <v-stepper-content step="3">
-          <v-card class="mb-12" height="400px">
+          <v-card class="mb-12" height="570px">
             <v-card-text>
               <v-row>
-                <v-col cols="3">
+                <v-col cols="4">
                   <v-card>
                     <v-card-title>
                       Datos del cliente
@@ -346,13 +349,67 @@
                         label="Documento"
                       >
                       </v-text-field>
-                      <v-text-field
+                      <v-select
+                        :items="dirEnvio "
+                        label="Provincia"
+                        v-model="dirProvincia"
+                        readonly
+                        hide-details
+                        outlined
+                        dense
+                      ></v-select>
+                      <v-select
+                      class="mt-6"
+                      :items="dirEnvio "
+                      label="Ciudad"
+                      v-model="dirCiudad"
+                      outlined
+                      dense
+                      hide-details
+                      readonly
+                    ></v-select>
+                    <v-text-field
+                    class="mt-6"
+                      :items="['Rocamora']"
+                      label="Calle"
+                      v-model="calle"
+                      outlined
+                      dense
+                      hide-details
+                      readonly
+                    ></v-text-field>
+                    <v-row class="mt-4">
+                      <v-col>
+                        <v-text-field
                         dense
                         outlined
-                        v-model="direccionEnvio"
-                        label="Dirección de envio"
+                        v-model="numero"
+                        readonly
+                        label="Número"
                       >
                       </v-text-field>
+                      </v-col>
+                       <v-col>
+                        <v-text-field
+                        dense
+                        outlined
+                        v-model="piso"
+                        readonly
+                        label="Piso"
+                      >
+                      </v-text-field>
+                      </v-col>
+                       <v-col>
+                        <v-text-field
+                        dense
+                        outlined
+                        v-model="departamento"
+                        readonly
+                        label="Departamento"
+                      >
+                      </v-text-field>
+                      </v-col>
+                    </v-row>
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -382,12 +439,11 @@
 
           <v-row>
             <v-col class="text-right">
-              <v-btn color="primary" @click="finalizar">
-                Continuar
-              </v-btn>
-
               <v-btn text @click="e1 = 2">
-                Cacelar
+                Cancelar
+              </v-btn>
+               <v-btn color="primary" @click="finalizar">
+                Continuar
               </v-btn>
             </v-col>
           </v-row>
@@ -417,7 +473,7 @@ export default {
 
       headers: [
         {
-          text: "Id Artículo",
+          text: "Id artículo",
           align: "start",
           sortable: false,
           value: "idArticulo",
@@ -438,6 +494,10 @@ export default {
       ],
 
       ///usuario
+      dirEnvio : ['Rocamora 789','Entre Ríos','Concepción del Uruguay'],
+      dirProvincia: 'Entre Ríos',
+      dirCiudad: 'Concepción del Uruguay',
+      calle: 'Rocamora',
       valor: null,
       nombre: null,
       apellido: null,
@@ -452,6 +512,9 @@ export default {
       soloLectura: false,
       modoAgregarCliente: false,
       valid: true,
+      numero:  789,
+      departamento: 2,
+      piso: 1,
 
       /////////////////////articulo
       formaDePResentacion: null,
@@ -466,7 +529,7 @@ export default {
       entradaModoRetiro: null,
       entradaCantidad: null,
       modoRetiroArticulo: [],
-      direccionEnvio: null,
+      direccionEnvio: 'Rocamora 789, Concepción del Uruguay, Entre Ríos',
 
       envioDomicilioArticulos: [],
 
@@ -603,7 +666,7 @@ export default {
           cuil: 2013456788,
           nombre: "Juan",
           apellido: "Carlos",
-          documento: 1345678,
+          documento: 13456784,
           telefono: "3447 678754",
           correo: "correo@gmail.com",
           direccion: "Rocamora 789",
@@ -708,7 +771,7 @@ export default {
         this.departamento = cliente.departamento;
         this.ciudad = cliente.ciudad;
         this.soloLectura = true;
-        this.direccionEnvio = this.direccion;
+        //this.direccionEnvio = this.direccion;
 
         console.log("ciudad", this.ciudad);
       } else {

@@ -163,11 +163,11 @@
           </v-card>
           <v-row>
             <v-col class="text-right">
-              <v-btn color="primary" @click="e6 = 2" class="mr-1">
-                Continuar
-              </v-btn>
-              <v-btn @click="dialog = false">
+              <v-btn @click="dialog = false" class="mr-1">
                 Cancelar
+              </v-btn>
+               <v-btn color="primary" @click="e6 = 2" >
+                Continuar
               </v-btn>
             </v-col>
           </v-row>
@@ -201,11 +201,11 @@
           </v-card>
           <v-row>
             <v-col class="text-right">
-              <v-btn color="primary" @click="e6 = 3" class="mr-1">
-                Continuar
-              </v-btn>
-              <v-btn @click="e6 = 1">
+              <v-btn @click="e6 = 1" class="mr-1">
                 Cancelar
+              </v-btn>
+               <v-btn color="primary" @click="e6 = 3" >
+                Continuar
               </v-btn>
             </v-col>
           </v-row>
@@ -239,11 +239,11 @@
           </v-card>
           <v-row>
             <v-col class="text-right">
-              <v-btn color="primary" @click="e6 = 4" class="mr-1">
-                Continuar
-              </v-btn>
-              <v-btn @click="e6 = 2">
+              <v-btn @click="e6 = 2" class="mr-1">
                 Cancelar
+              </v-btn>
+              <v-btn color="primary" @click="e6 = 4" >
+                Continuar
               </v-btn>
             </v-col>
           </v-row>
@@ -264,11 +264,11 @@
           </v-card>
           <v-row>
             <v-col class="text-right">
-              <v-btn color="primary" @click="dialog = false;finalizar()" class="mr-1">
-                Guardar
-              </v-btn>
-              <v-btn @click="e6 = 3">
+              <v-btn @click="e6 = 3" class="mr-1">
                 Cancelar
+              </v-btn>
+                 <v-btn color="primary" @click="dialog = false;finalizar()" >
+                Guardar
               </v-btn>
             </v-col>
           </v-row>

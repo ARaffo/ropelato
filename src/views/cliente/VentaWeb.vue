@@ -40,7 +40,7 @@
                 <h3 class="headline mb-0">Datos del cliente</h3>
               </div>
             </v-card-title>
-            <v-card-text>
+            <v-card-text class="pb-0">
               <v-row>
                 <v-col cols="4">
                   <v-text-field
@@ -95,19 +95,73 @@
                   ></v-text-field>
                 </v-col>
                  <v-col cols="4">
-                  <v-text-field
-                    
-                    label="Dirección de envío"
-                    hide-details
-                    v-model="direccionEnvio"
-                    outlined
-                    dense
-                    filled
-                  ></v-text-field>
+                   <v-select
+                        :items="dirEnvio "
+                        label="Provincia"
+                        v-model="dirProvincia"
+                        readonly
+                        hide-details
+                        outlined
+                        dense
+                        class="pt-0"
+                        filled
+                      ></v-select>
                 </v-col>
               </v-row>
+              <v-row>
+            
+               <v-col cols="4">
+                  <v-select
+                      :items="dirEnvio "
+                      label="Ciudad"
+                      v-model="dirCiudad"
+                      outlined
+                      dense
+                      hide-details
+                      readonly
+                      class="pt-0"
+                      filled
+                    ></v-select>
+               </v-col>
+               <v-col cols="4">
+                  <v-text-field
+                      :items="['Rocamora']"
+                      label="Calle"
+                      v-model="calle"
+                      outlined
+                      dense
+                      hide-details
+                      readonly
+                      filled
+                    ></v-text-field>
+               </v-col>
+                <v-col cols="2">
+                        <v-text-field
+                        dense
+                        outlined
+                        v-model="numero"
+                        readonly
+                        label="Número"
+                        filled
+                      >
+                      </v-text-field>
+                      </v-col>
+                       <v-col cols="2">
+                        <v-text-field
+                        dense
+                        outlined
+                        v-model="departamento"
+                        readonly
+                        label="Piso/Depto"
+                        filled
+                      >
+                      </v-text-field>
+                      </v-col>
+       
+                    </v-row>
+           
             </v-card-text>
-            <v-card-actions class="justify-end">
+            <v-card-actions class="justify-end pt-0">
               <v-btn @click="finalizar"  color="primary">Confirmar envío</v-btn>
             </v-card-actions>
           </v-card>
@@ -124,6 +178,9 @@ export default {
 
   data() {
     return {
+      numero: null,
+      psio: null,
+      departamento: null,
       randomNum: Math.floor(Math.random() * (10 - 1) + 1),
       headers: [
         {
@@ -175,7 +232,7 @@ export default {
 
       clienteNombre: "Roberto",
       clienteApellido: "Carlos",
-      clienteDni: " 23457612",
+      clienteDni: " 45237612",
       clienteTelefono: " 3442 568734",
       clienteCorreo: "correo@gmail.com",
       direccionEnvio: null,

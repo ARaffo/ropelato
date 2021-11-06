@@ -42,11 +42,12 @@
         </v-data-table>
       </v-card-text>
       <v-card-actions class="justify-end">
-        <v-btn color="primary" @click="dialogRemito  = true">
-          Aceptar
-        </v-btn>
+       
         <v-btn>
           Cancelar
+        </v-btn>
+         <v-btn color="primary" @click="dialogRemito  = true">
+          Aceptar
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -159,7 +160,7 @@ export default {
       ],
 
       headersRemito: [
-        { text: "Id artículo", value: "id", width: 70 },
+        { text: "Id artículo", value: "idArticulo", width: 70 },
         {
           text: "Artículo",
           align: "start",
@@ -184,6 +185,7 @@ export default {
             {
               id: "l001",
               articulo: "Tornillo",
+              idArticulo: 't001',
               cantidad: "20",
               precio: "$ 11.00",
               cantidadARetirar: null,
@@ -194,6 +196,7 @@ export default {
             },
             {
               id: "l002",
+             idArticulo: 'p001' ,
               articulo: "Pastina negra",
               cantidad: "56",
               precio: "$ 201.00",

@@ -10,14 +10,15 @@
                 <v-combobox
                 dense
                 outlined
-                :items="['Deposito 1', 'Deposito 2', 'Deposito 3']"
+                :items="['Depósito  1', 'Depósito  2', 'Depósito  3']"
                 v-model="deposito"
                 hide-details=""
                 ></v-combobox>
             </v-card-text>
             <v-card-actions class="justify-end">
-                <v-btn @click="buscar = true" color="primary">Aceptar</v-btn>
+                
                 <v-btn>Cancelar</v-btn>
+                <v-btn @click="buscar = true" color="primary">Aceptar</v-btn>
             </v-card-actions>
         </v-card>
 
@@ -31,7 +32,7 @@
                 <v-row>
                     <v-col cols="8" class="pb-0">
                         <v-text-field
-                        label="Id articulo o Nombre"
+                        label="Id artículo o Nombre"
                         v-model="buscarArticulo"
                         outlined
               
@@ -48,8 +49,9 @@
                  
             </v-card-text>
             <v-card-actions class="justify-end pt-0">
-                <v-btn @click="dialog = true"  color="primary">Buscar</v-btn>
+               
                 <v-btn  @click="buscar = false">Cancelar</v-btn>
+                 <v-btn @click="dialog = true"  color="primary">Buscar</v-btn>
             </v-card-actions>
         </v-card>
 
@@ -141,7 +143,7 @@ export default {
             value: 'idArticulo',
             width: 80,
           },
-          { text: 'Nombre', value: 'nombre',width: 60 },
+          { text: 'Artículo', value: 'nombre',width: 60 },
           { text: 'Cantidad', value: 'cantidadDisponible',width: 70 },
           { text: 'Estanteria', value: 'estanteria',width: 60 },
           { text: 'Nivel', value: 'nivel',width: 60 },

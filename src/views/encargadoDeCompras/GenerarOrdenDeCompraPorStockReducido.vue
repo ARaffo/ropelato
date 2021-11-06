@@ -20,8 +20,9 @@
                 ></v-data-table>
             </v-card-text>
             <v-card-actions class="justify-end">
-                <v-btn color="primary" @click="generada = true">Aceptar</v-btn>
+               
                 <v-btn  >Cancelar</v-btn>
+                 <v-btn color="primary" @click="generada = true">Aceptar</v-btn>
             </v-card-actions>
         </v-card>
 
@@ -66,14 +67,14 @@ export default {
             sortable: false,
             value: 'idArticulo',
           },
-          { text: 'Nombre', value: 'nombre' },
+          { text: 'Artículo', value: 'nombre' },
           { text: 'Cantidad disponible', value: 'cantidadDisponible' },
           { text: 'Stock mínimo', value: 'stockMinimo' },
           { text: 'Stock recomendado', value: 'stockRecomendado' },
           { text: 'Proveedor', value: 'proveedor' },
         ],
         headersOrdenCompra: [
-          { text: 'Nombre', value: 'nombre' ,width: 80},
+          { text: 'Artículo', value: 'nombre' ,width: 80},
           { text: 'Cantidad comprada', value: 'stockAComprar', width: 80},
           { text: 'Proveedor', value: 'proveedor',width: 80 },
           { text: 'Fecha ', value: 'fechaActual', width: 80},  

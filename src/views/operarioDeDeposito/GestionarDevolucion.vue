@@ -56,8 +56,9 @@
         </v-data-table>
       </v-card-text>
       <v-card-actions class="justify-end">
-        <v-btn @click="agregarArticulosADevolver(); dialog = true"  color="primary">Siguiente</v-btn>
         <v-btn @click="ocultarBuscar = false">Cancelar</v-btn>
+        <v-btn @click="agregarArticulosADevolver(); dialog = true"  color="primary">Siguiente</v-btn>
+        
       </v-card-actions>
     </v-card>
 
@@ -97,15 +98,16 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
+         
+            <v-btn @click="dialog = false; articulosADevolver = []"> 
+              Cancelar
+          </v-btn>
+           <v-btn
             color="primary"
 
             @click="dialog = false"
           >
             Generar Nota de Credito
-          </v-btn>
-            <v-btn @click="dialog = false; articulosADevolver = []"> 
-              Cancelar
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -130,7 +132,7 @@ export default {
           sortable: false,
           value: "id",
         },
-        { text: "Nombre", value: "articulo" },
+        { text: "Artículo", value: "articulo" },
         { text: "Cantidad", value: "cantidad" },
         { text: "Precio", value: "precio" },
         { text: "A devolver", value: "devolver"},
@@ -142,7 +144,7 @@ export default {
           sortable: false,
           value: "id",
         },
-        { text: "Nombre", value: "articulo" },
+        { text: "Artículo", value: "articulo" },
         { text: "Cantidad a devolver", value: "cantidadDevolver" },
       ],
       facturas: [

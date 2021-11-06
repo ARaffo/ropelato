@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <v-card width="600" v-if="!pantallaArticulos">
+    <v-card width="800" v-if="!pantallaArticulos">
       <v-card-title primary-title>
         <div>
-          <h3 class="headline mb-0">Ordenes de carga</h3>
+          <h3 class="headline mb-0">Órdenes de carga</h3>
         </div>
       </v-card-title>
       <v-card-text>
@@ -22,22 +22,29 @@
           }"
         >
           <template v-slot:[`item.seleccionar`]="{ item }">
-            <v-checkbox
-              class="ml-4"
-              v-model="item.seleccionar"
-            ></v-checkbox> </template
+
+             <v-radio-group
+              v-model="seleccionar"
+              mandatory
+            >
+              <v-radio
+                :value="item.seleccionar"
+              ></v-radio>
+            </v-radio-group>
+            </template
         ></v-data-table>
       </v-card-text>
       <v-card-actions class="justify-end">
+         <v-btn>Cancelar</v-btn>
         <v-btn color="primary">Continuar</v-btn>
-        <v-btn>Cancelar</v-btn>
+       
       </v-card-actions>
     </v-card>
 
-    <v-card width="800" v-else>
+    <v-card  v-else>
       <v-card-title primary-title>
         <div>
-          <h3 class="headline mb-0">Artículos en camion</h3>
+          <h3 class="headline mb-0">Artículos en vehículo</h3>
         </div>
       </v-card-title>
 
@@ -46,7 +53,7 @@
           <v-col>
             <v-card elevation="2">
                 <v-card-title>
-                   <div>Datos del camion</div>
+                   <div>Datos del vehículo</div>
                 </v-card-title>
               <v-card-text>
                 <v-row>
@@ -55,25 +62,25 @@
                       hide-details
                       v-model="camion"
                       outlined
-                      label="Camion"
+                      label="Vehículo"
                       dense
                     ></v-text-field>
                   </v-col>
                   <v-col>
-                      <v-text-field
-                      hide-details
-                      v-model="patente"
-                      outlined
-                      label="Matrícula"
-                      dense
-                    ></v-text-field>
+                     <v-combobox
+                    v-model="patente"
+                    :items="['NVN 285', 'NVZ 087']"
+                    label="Patente"
+                    outlined
+                    dense
+                  ></v-combobox>
                   </v-col>
                   <v-col>
                     <v-text-field
                       hide-details
                       v-model="pesoCamion"
                       outlined
-                      label="Peso maximo"
+                      label="Peso máximo"
                       dense
                     ></v-text-field>
                   </v-col>
@@ -83,15 +90,6 @@
                       v-model="tipo"
                       outlined
                       label="Tipo"
-                      dense
-                    ></v-text-field>
-                  </v-col>
-                   <v-col>
-                       <v-text-field
-                      hide-details
-                      v-model="modelo"
-                      outlined
-                      label="Modelo"
                       dense
                     ></v-text-field>
                   </v-col>
@@ -116,8 +114,9 @@
         </v-row>
       </v-card-text>
       <v-card-actions class="justify-end">
-        <v-btn flat color="primary">Generar Remito</v-btn>
+        
         <v-btn flat @click="pantallaArticulos = false">Cancelar</v-btn>
+        <v-btn flat color="primary">Generar Remito</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -130,20 +129,22 @@ export default {
   data() {
     return {
       camion: null,
+      seleccionar: null,
       pantallaArticulos: false,
-      camionNombre: "Camión 1",
+      camionNombre: "Iveco Daily 70-170 ",
       pesoCamion: "3.500 kg",
-      patente: "4676 NAH",
-      modelo: 'Iveco',
-      tipo: 'Tipo 1',
+      patente: null,
+      modelo: 'Iveco Daily 70-170 ',
+      tipo: 'De carga',
       headers: [
         {
           text: "Orden de carga",
           align: "start",
           sortable: false,
           value: "idOrden",
+          
         },
-
+        { text: "Vehículo de carga", value: "camion" },
         { text: "Fecha", value: "fecha" },
 
         { text: "Seleccionar", value: "seleccionar" },
@@ -158,37 +159,46 @@ export default {
         },
         { text: "Nombre", value: "nombre" },
         { text: "Cantidad", value: "cantidad" },
+        
         // { text: "Transito interno", value: "interno" },
       ],
 
       ordensDeCarga: [
         {
           idOrden: "O00189",
-          camion: "Camión 1",
+          camion: "Iveco Daily 70-170",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 1",
           seleccionar: false,
+          patente: "NVN 285",
+          modelo: 'Iveco',
         },
         {
           idOrden: "O00190",
-          camion: "Camión 1",
+          camion: "Iveco Daily 70-170 ",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 2",
           seleccionar: false,
+          patente: "NVN 285",
+          modelo: 'Iveco',
         },
         {
           idOrden: "O00191",
-          camion: "Camión 2",
+          camion: "Iveco Daily 55-170 ",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 1",
           seleccionar: false,
+           patente: "NVZ 087",
+          modelo: 'Iveco',
         },
         {
           idOrden: "O00192",
-          camion: "Camión 2",
+          camion: "Iveco Daily 55-170 ",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 2",
           seleccionar: false,
+           patente: "NVZ 087",
+          modelo: 'Iveco',
         },
       ],
 
