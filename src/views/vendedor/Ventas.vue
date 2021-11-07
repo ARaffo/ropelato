@@ -395,20 +395,10 @@
                         outlined
                         v-model="piso"
                         readonly
-                        label="Piso"
+                        label="Piso/Depto"
                       >
                       </v-text-field>
-                      </v-col>
-                       <v-col>
-                        <v-text-field
-                        dense
-                        outlined
-                        v-model="departamento"
-                        readonly
-                        label="Departamento"
-                      >
-                      </v-text-field>
-                      </v-col>
+                       </v-col>
                     </v-row>
                     </v-card-text>
                   </v-card>
@@ -514,7 +504,7 @@ export default {
       valid: true,
       numero:  789,
       departamento: 2,
-      piso: 1,
+      piso: '1-A',
 
       /////////////////////articulo
       formaDePResentacion: null,

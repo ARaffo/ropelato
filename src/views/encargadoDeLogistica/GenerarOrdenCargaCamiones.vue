@@ -209,7 +209,7 @@
           </v-btn>
           <v-btn
             color="primary"
-            text
+   
             @click="dialog = false"
           >
             Aceptar
@@ -218,6 +218,8 @@
       </v-card>
     </v-dialog>
   </v-container>
+
+  
 </template>
 
 <script>
@@ -389,6 +391,7 @@ export default {
           depositoOrigen: "Depósito 1",
           camion: 'Iveco Daily 70-170',
           fecha: '15-12-2021',
+          depositoDestino: '-',
           direccion: 'Jordana 862, Concepción del Uruguay, Entre Ríos',
           orden: null
         },
@@ -401,11 +404,12 @@ export default {
           depositoOrigen: "Depósito 1",
           camion: 'Iveco Daily 70-170',
           fecha: '15-12-2021',
+          depositoDestino: '-',
           direccion: 'Jordana 862, Concepción del Uruguay, Entre Ríos',
           orden: null
         },
         {
-          idOrden: null,
+          idOrden: '-',
           idArticulo: "t001",
           nombre: "Tornillo 5 cm",
           cantidad: 600,
@@ -417,7 +421,7 @@ export default {
           orden: null
         },
         {
-          idOrden: null,
+          idOrden: '-',
           idArticulo: "pl001",
           nombre: "Plavicon sellador 25 gr",
           cantidad: 50,
@@ -429,7 +433,7 @@ export default {
           orden: null
         },
         {
-          idOrden: null,
+          idOrden: '-',
           idArticulo: "h001",
           nombre: "Hierro nervado",
           cantidad: 30,

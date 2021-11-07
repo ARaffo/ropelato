@@ -62,6 +62,7 @@
           <h5 class="headline mb-0 font-size-1.2">
             Artículos recibidos
           </h5>
+          <div>Proveedor 4</div>
         </div>
       </v-card-title>
       <v-card-text>

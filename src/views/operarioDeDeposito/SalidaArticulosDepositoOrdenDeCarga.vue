@@ -21,18 +21,34 @@
             pageText: '{0}-{1} de {2}',
           }"
         >
-          <template v-slot:[`item.seleccionar`]="{ item }">
 
+        <template slot="item.seleccionar" slot-scope="props">
+          <tr >
+          <td>{{ props.item.seleccionar }}</td>
+
+          <td class="text-xs-right">
+            <v-radio-group v-model="seleccionar">
+              <v-radio :value="props.item.idOrden"/>
+            </v-radio-group>
+            </td>
+        </tr>
+      </template>
+          
+ <!-- <template v-slot:[`item.seleccionar`]="{ item }">
              <v-radio-group
               v-model="seleccionar"
               mandatory
             >
+           
               <v-radio
                 :value="item.seleccionar"
+                :key="item.idOrden"
               ></v-radio>
+             
             </v-radio-group>
-            </template
-        ></v-data-table>
+              </template
+        > -->
+           </v-data-table>
       </v-card-text>
       <v-card-actions class="justify-end">
          <v-btn>Cancelar</v-btn>
@@ -147,7 +163,7 @@ export default {
         { text: "Vehículo de carga", value: "camion" },
         { text: "Fecha", value: "fecha" },
 
-        { text: "Seleccionar", value: "seleccionar" },
+        { text: "", value: "seleccionar" },
       ],
 
       headersArticulos: [
@@ -169,7 +185,7 @@ export default {
           camion: "Iveco Daily 70-170",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 1",
-          seleccionar: false,
+          seleccionar: null,
           patente: "NVN 285",
           modelo: 'Iveco',
         },
@@ -178,7 +194,7 @@ export default {
           camion: "Iveco Daily 70-170 ",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 2",
-          seleccionar: false,
+          seleccionar: null,
           patente: "NVN 285",
           modelo: 'Iveco',
         },
@@ -187,7 +203,7 @@ export default {
           camion: "Iveco Daily 55-170 ",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 1",
-          seleccionar: false,
+          seleccionar: null,
            patente: "NVZ 087",
           modelo: 'Iveco',
         },
@@ -196,7 +212,7 @@ export default {
           camion: "Iveco Daily 55-170 ",
           fecha: new Date().toISOString().substr(0, 10),
           depositoOrigen: "Deposito 2",
-          seleccionar: false,
+          seleccionar: null,
            patente: "NVZ 087",
           modelo: 'Iveco',
         },

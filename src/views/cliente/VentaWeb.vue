@@ -96,9 +96,9 @@
                 </v-col>
                  <v-col cols="4">
                    <v-select
-                        :items="dirEnvio "
+                        :items="['Entre Ríos']"
                         label="Provincia"
-                        v-model="dirProvincia"
+                        v-model="provincia"
                         readonly
                         hide-details
                         outlined
@@ -112,9 +112,9 @@
             
                <v-col cols="4">
                   <v-select
-                      :items="dirEnvio "
+                      :items="['Concepción del Uruguay']"
                       label="Ciudad"
-                      v-model="dirCiudad"
+                      v-model="ciudad"
                       outlined
                       dense
                       hide-details
@@ -178,9 +178,13 @@ export default {
 
   data() {
     return {
-      numero: null,
-      psio: null,
-      departamento: null,
+      provincia: 'Entre Ríos',
+      ciudad: 'Concepción del Uruguay',
+      calle: 'Dra Ratto',
+      numero: 567,
+      piso: null,
+      fecha:'10-12-2021',
+      departamento: '2-B',
       randomNum: Math.floor(Math.random() * (10 - 1) + 1),
       headers: [
         {

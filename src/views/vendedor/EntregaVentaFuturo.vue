@@ -66,10 +66,11 @@
                      <v-text-field
               v-if="clienteDni"
               label="Fecha de retiro"
-              v-model="fechaRetiro"
+              v-model="fecha"
               outlined
               hide-details
               dense
+              filled
               class="pb-0"
             ></v-text-field>
                     </v-col>
@@ -83,13 +84,14 @@
               readonly
             ></v-text-field>
             <v-select
-                        :items="dirEnvio "
+                        :items="['Entre Ríos']"
                         label="Provincia"
                         v-model="dirProvincia"
                         readonly
                         hide-details
                         outlined
                         dense
+                        filled
                         class="pt-0"
                       ></v-select>
                  
@@ -99,11 +101,12 @@
              <v-row>
                <v-col cols="4">
                   <v-select
-                      :items="dirEnvio "
+                      :items="['Concepción del Uruguay']"
                       label="Ciudad"
                       v-model="dirCiudad"
                       outlined
                       dense
+                      filled
                       hide-details
                       readonly
                       class="pt-0"
@@ -113,8 +116,9 @@
                   <v-text-field
                       :items="['Rocamora']"
                       label="Calle"
-                      v-model="calle"
+                      v-model="dirDireccion"
                       outlined
+                      filled
                       dense
                       hide-details
                       readonly
@@ -124,6 +128,7 @@
                         <v-text-field
                         dense
                         outlined
+                        filled
                         v-model="numero"
                         readonly
                         label="Número"
@@ -134,6 +139,7 @@
                         <v-text-field
                         dense
                         outlined
+                        filled
                         v-model="departamento"
                         readonly
                         label="Piso/Depto"
@@ -220,12 +226,13 @@ export default {
   data() {
     return {
        dirEnvio : ['Rocamora 789','Entre Ríos','Concepción del Uruguay'],
-      dirProvincia: null,
-      dirCiudad: null,
-      dirDireccion: null,
-      numero: null,
+      dirProvincia: 'Entre Ríos',
+      dirCiudad: 'Concepción del Uruguay',
+      dirDireccion: 'Rocamora',
+      numero: 567,
       piso: null,
-      departamento: null,
+      fecha:'10-12-2021',
+      departamento: '2-B',
       calle: null,
        headers: [
           {
